@@ -22,5 +22,5 @@ if(isset($_POST['SS']) && !empty(trim($_POST['SS']))){
          echo '<li><a href="index.php?site=angebot&type=1&KID='.$Kunde->getKundenNr().'">'.$Kunde->getKundenNr().': '.$Kunde->getVorname().' '.$Kunde->getNachname().'</a></li>';
      }
      
-    echo '</ul>';
+    echo '</ul>'; 
 }
