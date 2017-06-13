@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<root>
+        <item>
+            <name>
+                Aufträge
+            </name>
+            <id>
+                aufträge
+            </id>
+            <href>
+                sites/aufträge.php
+            </href>
+        </item>
+        <item>
+            <name>
+                Angebot
+            </name>
+            <id>
+                angebot
+            </id>
+            <href>
+                sites/angebot.php
+            </href>
+        </item>
+        <item>
+            <name>
+                Kunden Verwaltung
+            </name>
+            <id>
+                kundenverwaltung
+            </id>
+            <href>
+                sites/kundenverwaltung.php
+            </href>
+        </item>
+</root>
