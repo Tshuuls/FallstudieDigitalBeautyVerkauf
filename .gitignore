@@ -1,0 +1,11 @@
+
+.DS_Store
+nbproject/project.xml
+.svn/entries
+.svn/format
+*.svn-base
+.svn/wc.db
+.svn/wc.db-journal
+nbproject/private/private.properties
+nbproject/private/private.xml
+nbproject/project.properties
