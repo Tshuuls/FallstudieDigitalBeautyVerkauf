@@ -12,7 +12,7 @@ if(isset($_POST['SS']) && !empty(trim($_POST['SS']))){
         $String = $_POST['SS']."%";
    
     // Customer und Datenbank Klasse müssen nochmal inkludiert werden, da das PHP Formular nur von Javascript aufgerufen wird und daher die Klassen nicht vererbt bekommt. 
-    //include '../model/Customer.class.php';
+    include '../model/Customer.class.php';
     include '../model/Database.class.php';
     $db = new Database();
     echo '<ul>';

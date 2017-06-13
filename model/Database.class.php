@@ -100,7 +100,7 @@ class Database {
     }
     
     function getallCustomer(){
-        include 'Customer.class.php';
+        //include 'Customer.class.php';
         $customlist = array();
         $db= $this->connect2DB();
         $Abfrage = "select * from kunde join kundenstatus on Kundenstatus_KundenstausID=KundenstausID";
@@ -117,7 +117,7 @@ class Database {
         return $customlist;
         }
        function searchCustomer($string){
-        include 'Customer.class.php';
+       // include 'Customer.class.php';
         $customlist = array();
         $db= $this->connect2DB();
         $Abfrage = 'select * from kunde join kundenstatus on Kundenstatus_KundenstausID=KundenstausID where KundenNr like "'.$string.'"';
