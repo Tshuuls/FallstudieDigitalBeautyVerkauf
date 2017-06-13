@@ -1,9 +1,13 @@
 Aufträge
 <?php
+//Liste anzeigen lassen der versendeten Aufträge samt Auftragsnummer--
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+echo "<table class='table table-striped'>";
+
+        echo "<th>Auftragsnummer</th>";
+        echo "<th>Auftrag</th>";
+        echo "<th>Kundennummer</th>";
+        
+  
+echo "</table>";
 
