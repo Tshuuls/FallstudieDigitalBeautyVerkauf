@@ -10,12 +10,14 @@ and open the template in the editor.
         <title></title>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        
+        <link rel="stylesheet" href="res/css/myStyle.css">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="ajax/myJS.js"></script>
     </head>
     <body>
     <?php 
     include 'model/Database.class.php';
-    include 'model/User.class.php';
+    include 'model/Customer.class.php';
     session_start();
     //
     if(!isset($_GET['site'])){
@@ -63,7 +65,7 @@ and open the template in the editor.
                     foreach ( $xml->item as $item )   
                     {  
                        echo '<li><a href="index.php?site='.trim($item->id).'">'.$item->name.'</a></li>';   
-                       //var_dump($item);
+                       
                        if (isset($_GET['site'])){
                             if($_GET['site']===trim($item->id)){
                                 $_SESSION['href']= trim($item->href);
@@ -102,21 +104,10 @@ and open the template in the editor.
         
     <div class="container">
 <?php
-        //include 'model/User.class.php';
-        // put your code here
-       /* $user=new User(124, "Herr", "Peter", "Mustermann", "Straße 1", 1220, "wien", "email@mail.com", "MMuster", "1234", true);
-        echo $user->getVorname();
-        echo"<br />";
-        $user->insertUser();
-        echo"<br />";
-        //$user->selectAllUsers();
-        $user->checkIfUserExists();
-        var_dump($_SESSION);*/
+
         
         include $_SESSION['href'];
-        
-        //var_dump($_SESSION);
-        //var_dump($_GET);
+
         ?>
 
     </div> <!-- /container -->

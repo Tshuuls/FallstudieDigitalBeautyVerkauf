@@ -1,0 +1,18 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 13.06.2017, 13:48:07
+    Author     : julia
+*/
+
+.btn-lg_Angebot{
+    height: 100px;
+    width:240px;
+    font-size: 160%;
+    border-radius: 10px;
+    vertical-align: middle;
+    padding-top: 30px;
+}

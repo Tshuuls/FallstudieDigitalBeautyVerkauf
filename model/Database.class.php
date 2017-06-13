@@ -99,15 +99,16 @@ class Database {
         }
     }
     
-    function getallcustomers(){
+    function getallCustomer(){
         include 'Customer.class.php';
         $customlist = array();
         $db= $this->connect2DB();
-        $Abfrage = "select * from kunde join kundenstatus using (KundenstatusID)";
-        if($result = $db->query($Abfrage)){
+        $Abfrage = "select * from kunde join kundenstatus on Kundenstatus_KundenstausID=KundenstausID";
+        $result = $db->query($Abfrage);
+        if(!empty($result)){
             while ($row = $result->fetch_assoc()) {
                 $customer = new Customer();
-                $customer->withparam($row['KundenNr'], $row['Vorname'], $row['Nachname'], $row['Zahlungsbedingungen'], $row['Strasse'], $row['PLZ'], $row['Land'], $row['Email'], $row['Tel'], $row['KundenstatusID'], $row['Rabatt']);
+                $customer->withparam($row['KundenNr'], $row['Vorname'], $row['Nachname'], $row['Zahlungsbedingungen'], $row['Strasse'], $row['PLZ'], $row['Land'], $row['EMail'], $row['Tel'], $row['Kundenstatus_KundenstausID'], $row['Rabatt']);
                 array_push($customlist, $customer);
             }
         }
@@ -115,15 +116,31 @@ class Database {
         //$result->close;
         return $customlist;
         }
-        
+       function searchCustomer($string){
+        include 'Customer.class.php';
+        $customlist = array();
+        $db= $this->connect2DB();
+        $Abfrage = 'select * from kunde join kundenstatus on Kundenstatus_KundenstausID=KundenstausID where KundenNr like "'.$string.'"';
+        $result = $db->query($Abfrage);
+        if(!empty($result)){
+            while ($row = $result->fetch_assoc()) {
+                $customer = new Customer();
+                $customer->withparam($row['KundenNr'], $row['Vorname'], $row['Nachname'], $row['Zahlungsbedingungen'], $row['Strasse'], $row['PLZ'], $row['Land'], $row['EMail'], $row['Tel'], $row['Kundenstatus_KundenstausID'], $row['Rabatt']);
+                array_push($customlist, $customer);
+            }
+        }
+        //$db->close;
+        //$result->close;
+        return $customlist;
+        } 
     
     function getCustomer($KundenNr){
         $customer = new Customer();
         $db= $this->connect2DB();
-        $Abfrage = "select * from kunde join kundenstatus using (KundenstatusID) where KundenNr=".$KundenNR;
+        $Abfrage = "select * from kunde join kundenstatus on Kundenstatus_KundenstausID=KundenstausID where KundenNr=".$KundenNr;
         if($result = $db->query($Abfrage)){
             while ($row = $result->fetch_assoc()) {
-            $customer->withparam($row['KundenNr'], $row['Vorname'], $row['Nachname'], $row['Zahlungsbedingungen'], $row['Strasse'], $row['PLZ'], $row['Land'], $row['Email'], $row['Tel'], $row['KundenstatusID'], $row['Rabatt']);
+            $customer->withparam($row['KundenNr'], $row['Vorname'], $row['Nachname'], $row['Zahlungsbedingungen'], $row['Strasse'], $row['PLZ'], $row['Land'], $row['EMail'], $row['Tel'], $row['Kundenstatus_KundenstausID'], $row['Rabatt']);
             }
         }
         return $customer;
