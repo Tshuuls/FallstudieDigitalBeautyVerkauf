@@ -144,6 +144,7 @@ class Customer {
     
     function updateCustomer(){
         $db =new Database();
+        $query="UPDATE `produkte` SET `Vorname`='".$this->Vorname."',`Nachname`='".$this->Nachname."',`Zahlungsbedingungen`='".$this->Zahlungsbedingungen."',`Strasse`='".$this->Strasse."',`PLZ`='".$this->PLZ."',`Land`='".$this->Land."',`Email`='".$this->Email."',`Tel`='".$this->Tel."',`KundenstatusID`='".$this->KundenstatusID."' WHERE `KundenNr`=".$this->KundenNr;
         $db->insert($query);
     }
     
