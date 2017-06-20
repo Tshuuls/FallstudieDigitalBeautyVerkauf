@@ -1,4 +1,3 @@
-Aufträge
 <?php
 //Liste anzeigen lassen der versendeten Aufträge samt Auftragsnummer--
 
