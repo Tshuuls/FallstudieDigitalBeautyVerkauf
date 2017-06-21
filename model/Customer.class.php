@@ -131,20 +131,25 @@ class Customer {
     
     function insertCustomer(){
         $db =new Database();
-        $query="INSERT INTO `produkte`(`Vorname`, `Nachname`, `Zahlungsbedingungen`, `Strasse`, `PLZ`, `Land`,`Email`,`Tel`,`KundenstatusID`) VALUES "
+        $query="INSERT INTO `kunde`(`Vorname`, `Nachname`, `Zahlungsbedingungen`, `Strasse`, `PLZ`, `Land`,`Email`,`Tel`,`KundenstatusID`) VALUES "
                 ."('".$this->Vorname."','".$this->Nachname."','".$this->Zahlungsbedingungen."','".$this->Strasse."','".$this->PLZ."','".$this->Land."','".$this->Email."','".$this->Tel."','".$this->KundenstatusID."')";
         $db->insert($query);
     }
     
     function deleteCustomer(){
         $db =new Database();
-        $stmt = "DELETE FROM `produkte` WHERE `ProduktID`=".$this->KundenNr;
-        $db->deleteIt($stmt);
+        if ($db->checkifcustomerisinposition($this->KundenNr)){
+            $stmt = "DELETE FROM `kunde` WHERE `ProduktID`=".$this->KundenNr;
+            $db->deleteIt($stmt);
+            return true;
+        }
+        else {return false;}
+        
     }
     
     function updateCustomer(){
         $db =new Database();
-        $query="UPDATE `produkte` SET `Vorname`='".$this->Vorname."',`Nachname`='".$this->Nachname."',`Zahlungsbedingungen`='".$this->Zahlungsbedingungen."',`Strasse`='".$this->Strasse."',`PLZ`='".$this->PLZ."',`Land`='".$this->Land."',`Email`='".$this->Email."',`Tel`='".$this->Tel."',`KundenstatusID`='".$this->KundenstatusID."' WHERE `KundenNr`=".$this->KundenNr;
+        $query="UPDATE `kunde` SET `Vorname`='".$this->Vorname."',`Nachname`='".$this->Nachname."',`Zahlungsbedingungen`='".$this->Zahlungsbedingungen."',`Strasse`='".$this->Strasse."',`PLZ`='".$this->PLZ."',`Land`='".$this->Land."',`Email`='".$this->Email."',`Tel`='".$this->Tel."',`KundenstatusID`='".$this->KundenstatusID."' WHERE `KundenNr`=".$this->KundenNr;
         $db->insert($query);
     }
     

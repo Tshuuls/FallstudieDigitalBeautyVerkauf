@@ -173,11 +173,28 @@ class Database {
         $rows = $st->get_result();
         if(!empty($rows)){
             while($row = $rows->fetch_assoc()){
-            $status = new CustomerStatus($row['KundenstatusID'],$row['Rabat']);
+            $status = new CustomerStatus($row['KundenstatusID'],$row['Rabatt'],$row['Wert']);
             array_push($statuslist, $status);
             }
         return $statuslist;    
         }    
     }
-    
+    function checkifcustomerisinposition($custid){
+       $db = $this->connect2DB();
+       $trigger = false;
+       $query="SELECT count(*) as counter from angebot where KundenNR= '".$custid."'";
+       $query2="SELECT count(*) as counter from auftrag where KundenNR= '".$custid."'";
+       if($result=$db->query($query)&&$result2=$db->query($query2)) {
+       while($zeile=$result->fetch_object()){
+            if($zeile->counter == 0){ $trigger = true;}
+            else {$trigger=false;}
+        }
+        while($zeile2=$result2->fetch_object()){
+            if($zeile2->counter == 0){ $trigger = true;}
+            else {$trigger=false;}
+        }
+       }
+       return $trigger;
+
+     }
 }
