@@ -13,12 +13,18 @@ and open the template in the editor.
         <link rel="stylesheet" href="res/css/myStyle.css">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="ajax/myJS.js"></script>
+        <?php
+             session_start();
+            include 'model/Database.class.php';
+            include 'model/Customer.class.php';
+            include 'model/User.class.php';
+            include 'model/auftrag.class.php';
+            include 'model/Angebot.class.php';
+        ?>
     </head>
     <body>
     <?php 
-    include 'model/Database.class.php';
-    include 'model/Customer.class.php';
-    session_start();
+
     //
     if(!isset($_GET['site'])){
         $_GET['site']="home";

@@ -81,7 +81,7 @@ class Database {
             }
         }
     
-    $ergebniss->close();
+    if(!empty($ergebniss)){$ergebniss->close();}
     $db->close();
     return $user;
     }
