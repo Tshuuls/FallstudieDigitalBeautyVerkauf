@@ -197,4 +197,20 @@ class Database {
        return $trigger;
 
      }
+     
+    function searchProdukt($String){
+        $productlist = array();
+        $db= $this->connect2DB();
+        $Abfrage = "select * from artikel where Artikelname like '".$String."'";
+        if($result = $db->query($Abfrage)){
+            while ($row = $result->fetch_object()) {
+                $prod = new Artikel();
+                $prod->addAllValues($row->ArtikelNr, $row->Artikelname, $row->Artikelgruppe, $row->Lagerplatz, $row->Einkaufspreis, $row->Verkaufspreis, $row->Mindestbestand, $row->Basiseinheit, $row->Verpackung, $row->Lieferdauerstatus, $row->Bestand);
+                array_push($productlist, $prod);
+                }
+            $result->close();
+            }
+        $db->close();
+        return $productlist;
+    }
 }

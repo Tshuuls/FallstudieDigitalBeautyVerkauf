@@ -10,7 +10,7 @@
     </div>
   </div>
 </form>
-<a class="btn btn-md btn-primary" href="index.php?site=kundenverwalten&type=1">Kunden anlegen</a>
+<a class="btn btn-md btn-primary" href="index.php?site=kundenverwaltung&type=1">Kunden anlegen</a>
 
 <div id="searchresult"></div>
 
