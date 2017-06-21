@@ -9,11 +9,7 @@
             <input type="text" id="inputBenutzername" name="inputBenutzername" class="form-control" placeholder="Benutzername" required autofocus>
             <label for="inputPassword" class="sr-only" style="margin-top:5px">Passwort</label>
             <input type="password" id="inputPasswort" name="inputPasswort" class="form-control" placeholder="Passwort" required>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" value="remember-me" name="rememberMe"> Login merken
-              </label>
-            </div>
+            <br>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Einloggen</button>
           </form>
           <a class="btn btn-lg btn-primary btn-block" href="index.php?site=Home&register=true" style="margin-top:10px">Registrieren</a>
