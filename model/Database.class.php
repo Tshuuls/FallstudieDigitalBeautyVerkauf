@@ -74,8 +74,7 @@ class Database {
         if ($ergebniss!=false){
             while($zeile=$ergebniss->fetch_object()){
                 $user=new User();
-                $user->addAllValues($zeile->UserID, $zeile->Anrede, $zeile->Vorname, $zeile->Nachname, $zeile->Adresse, 
-                    $zeile->PLZ, $zeile->Ort, $zeile->Email, $zeile->Benutzername, $zeile->Passwort, $zeile->Admin);
+                $user->addAllValues($zeile->email, $zeile->username, $zeile->password);
                 //$user->displayUser();
                 //echo "<br />";
             }
@@ -88,15 +87,32 @@ class Database {
     
     function getallBenutzernamen(){
         $db= $this->connect2DB();
-        $statement ="Select Benutzername from User";
+        $statement ="Select username from benutzer";
         $ergebniss = $db->query($statement);
         $Namen=array();
         if ($ergebniss!=false){
             while($zeile=$ergebniss->fetch_object()){
-                array_push($Namen, $zeile->Benutzername);
-                echo $zeile->Benutzername .'<br />';
+                array_push($Namen, $zeile->username);
             }
         }
+        return $Namen;
+    }
+    
+    function getallArtikel(){
+        $db= $this->connect2DB();
+        $statement ="Select * from artikel";
+        $ergebniss = $db->query($statement);
+        $Artikel=array();
+        if ($ergebniss!=false){
+            while($zeile=$ergebniss->fetch_object()){
+                $newArtikel = new Artikel();
+                $newArtikel->addAllValues($zeile->ArtikelNr, $zeile->Artikelname, $zeile->Artikelgruppe, $zeile->Lagerplatz, $zeile->Einkaufspreis, $zeile->Verkaufspreis, $zeile->Mindestbestand, $zeile->Basiseinheit, $zeile->Verpackung, $zeile->Lieferdauerstatus, $zeile->Bestand);
+            
+                array_push($Artikel, $newArtikel);
+                
+            }
+        }
+        return $Artikel;
     }
     
     function getallCustomer(){
@@ -120,7 +136,7 @@ class Database {
        // include 'Customer.class.php';
         $customlist = array();
         $db= $this->connect2DB();
-        $Abfrage = 'select * from kunde join using (KundenstatusID) where KundenNr like "'.$string.'"';
+        $Abfrage = 'select * from kunde join kundenstatus using (KundenstatusID) where KundenNr like "'.$string.'"';
         $result = $db->query($Abfrage);
         if(!empty($result)){
             while ($row = $result->fetch_assoc()) {

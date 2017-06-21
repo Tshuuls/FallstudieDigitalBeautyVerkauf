@@ -21,14 +21,13 @@
         
         if (isset($_POST['inputBenutzername'])&&isset($_POST['inputPasswort'])){
             $loginUser =new User();
-            $passwordHashed = password_hash((String)$_POST['inputPasswort'], PASSWORD_DEFAULT);
-            $loginUser->setBenutzerName($_POST['inputBenutzername']);
-            $loginUser->setPasswort($passwordHashed);
-            
+            $loginUser->setUsername($_POST['inputBenutzername']);
+            $loginUser->setPasswort($_POST['inputPasswort']);
+            var_dump($loginUser);
             $result=$loginUser->loginUser();
             //echo $passwordHashed;
             //var_dump($_POST) ;
-            if($result!=false){
+            if($result===true){
                 
                 if(isset($_POST['rememberMe'])){
                     
@@ -39,6 +38,7 @@
                 }
                 header("Refresh:0");
             }else{
+                echo "<div class='alert alert-danger col-md-6 col-md-offset-3'> ".$result." </div>";
                 echo $loginForm;
             }
         }else{

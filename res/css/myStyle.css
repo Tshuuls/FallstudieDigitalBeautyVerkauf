@@ -16,3 +16,16 @@ and open the template in the editor.
     vertical-align: middle;
     padding-top: 30px;
 }
+body {
+	padding-top: 70px;
+}
+
+.navbar-brand {
+	background-color: white;
+}
+.navbar-brand:hover{
+	background-color: white !important;
+}
+.navbar-brand img {
+	max-height: 100%;
+}

@@ -3,6 +3,20 @@ $db = new Database();
 $user = new Customer();
 $user=$db->getCustomer($_GET['KID']);
 echo "<h3>".$user->getVorname()." ".$user->getNachname()."</h3>";
+
+include 'searchProdukt.inc.php';
+$Artikel=$db->getallArtikel();
+echo"<table  class='table table-striped'><tr><th>Name</th><th>Preis</th><th>Kategorie</th><th>Aktion</th></tr>";
+
+foreach ($Artikel as $a){
+    echo"<tr>";
+    echo"<td>".$a->getArtikelname()."</td>";
+    echo"<td>".$a->getVerkaufspreis()."</td>";
+    echo"<td>".$a->getArtikelgruppe()."</td>";
+    echo"<td><span class='fa fa-plus' aria-hidden='true' onclick='' style='cursor:pointer'></span></td>";
+    echo"</tr>";
+}
+echo"</table>";
 ?>
 
 <form class="form-horizontal" id="positionsList">
@@ -46,4 +60,3 @@ echo "<h3>".$user->getVorname()." ".$user->getNachname()."</h3>";
 
 
 <?php
-include 'searchProdukt.inc.php';

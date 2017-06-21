@@ -9,8 +9,14 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <title></title>
         <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link rel="stylesheet" href="res/css/myStyle.css">
+        <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/theme.min.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="ajax/myJS.js"></script>
         <?php
@@ -20,6 +26,7 @@ and open the template in the editor.
             include 'model/User.class.php';
             include 'model/auftrag.class.php';
             include 'model/Angebot.class.php';
+            include 'model/Artikel.class.php';
         ?>
     </head>
     <body>
@@ -59,11 +66,12 @@ and open the template in the editor.
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php?site=home">Digitally Beautiful</a>
+          <a class="navbar-brand" href="index.php?site=home"><img src="res/img/logo-font.svg" style="height:50px"></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
              <?php
+             if($_SESSION['status']=="user"||$_SESSION['status']=="admin"){
                 $xmlFile = 'inc/menuXML.xml'; 
 
                 if (file_exists($xmlFile)) { 
@@ -88,6 +96,7 @@ and open the template in the editor.
                 else {
                     echo "no XML found";
                 }
+             }
             ?>
             
              
@@ -111,7 +120,7 @@ and open the template in the editor.
     <div class="container">
 <?php
 
-        
+            //var_dump($_SESSION);
         include $_SESSION['href'];
 
         ?>

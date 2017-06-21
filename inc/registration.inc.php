@@ -43,35 +43,33 @@ $registerForm = '</div>
           </form>
             </div>';
 
-if (isset($_POST['registerVorname'])){
+if (isset($_POST['registerBenutzername'])){
     $check=false;
-    if(isset($_POST['registergender'])&& $_POST['registergender']=="Frau"){
-        $anrede="Frau";
-    }else{
-        $anrede= "Mann";
-    }
     if($_POST['registerPasswort']===$_POST['registerPasswort2']){
-        $user = new User(0, $anrede, $_POST['registerVorname'], $_POST['registerNachname'], $_POST['registerAdresse'],
-                $_POST['registerPLZ'], $_POST['registerOrt'], $_POST['registerEmail'], $_POST['registerBenutzername'], $_POST['registerPasswort'], false);
+        $passwordHashed = password_hash((String)$_POST['registerPasswort'], PASSWORD_DEFAULT);
+        $user = new User();
+        $user->addAllValues($_POST['registerEmail'], $_POST['registerBenutzername'], $passwordHashed);
         $usercheck=$user->validateUser();
         if ($usercheck==true){
             $db =new Database();
             $result=$db->getallBenutzernamen();
-            if (in_array($user->getBenutzerName(),(array)$result)){
+            if (in_array($user->getUsername(),(array)$result)){
                 //Username exists
+                echo "<div class='alert alert-danger col-md-6 col-md-offset-3'> Benutzername existiert schon </div>";
+                 echo $registerForm;
 
-
-            }
-            if($check==true){
-                //insert user in DB, return to login 
-                
-                
             }else{
-                echo $registerForm;
-        }
+                //insert user in DB, return to login 
+                $ID=$user->insertUser();
+                Echo "<div class='alert alert-success' role='alert'>Registrierung war erfolgreich<div>";
+                include 'signIn.inc.php';
+                
+            }
     
         }else{
         //invalid userInput
+        echo "<div class='well'> Invalid Input </div>";
+        echo $registerForm;
         
         }
     }
