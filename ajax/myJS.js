@@ -24,9 +24,30 @@ function searchKunde(S){
     }
     
 function addProduktToCart(PID){
-    $.post("inc/searchProdukt.inc.php", {PID : PID})
+    $.post("inc/warenkorb.inc.php", {PID : PID,operation:"add"})
                 .done(function( data ){
-                    document.getElementById("positionsList").innerHtml=document.getElementById("positionsList").innerHtml+data;
+                    $("#WarenkorbDIV").html(data);
+            
+        });
+}
+
+//updated den counter neben dem icon
+function updateWarenkorbCount(counter){
+    document.getElementById("warenkorbCount").innerHTML=String(counter);
+}
+    //löscht/leehrt den warenkorb
+function warenkorbLöschen(){
+      $.post("inc/warenkorb.inc.php", {operation: 'alleslöschen'}, function(result){
+        $("span").html(result);
+    });  
+    document.getElementById("WarenkorbDIV").innerHTML="<div class='col-md-12'><div class='alert alert-danger'> Der Warenkorb ist leider leer. </div></div>";
+        
+}
+
+function updateWarenkorb(){
+    $.post("inc/warenkorb.inc.php", {})
+                .done(function( data ){
+                    $("#WarenkorbDIV").html(data);
             
         });
 }

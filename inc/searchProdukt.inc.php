@@ -8,20 +8,27 @@
 
 if(isset($_POST['SS']) && !empty(trim($_POST['SS']))){
   
-        $String = $_POST['SS']."%";
+        $String ="%".$_POST['SS']."%";
    
     // Customer und Datenbank Klasse müssen nochmal inkludiert werden, da das PHP Formular nur von Javascript aufgerufen wird und daher die Klassen nicht vererbt bekommt. 
     //include '../model/Customer.class.php';
     include '../model/Database.class.php';
+    include '../model/Artikel.class.php';
     $db = new Database();
-    echo '<ul>';
     
-     $ergebnis = $db->searchCustomer($String);
-     foreach ($ergebnis as $Kunde){
-         echo '<li><a  onclick="addProduktToCart('.$Kunde->getKundenNr().')">'.$Kunde->getKundenNr().': '.$Kunde->getVorname().' '.$Kunde->getNachname().'</a></li>';
+     $ergebnis = $db->searchProdukt($String);
+     echo"<table  class='table table-striped'><tr><th>Name</th><th>Preis</th><th>Kategorie</th></tr>";
+
+     foreach ($ergebnis as $a){
+        echo"<tr onclick='addProduktToCart(".$a->getArtikelNr().")' style ='cursor:pointer'>";
+        echo"<td>".$a->getArtikelname()."</td>";
+        echo"<td>".$a->getVerkaufspreis()."</td>";
+        echo"<td>".$a->getArtikelgruppe()."</td>";
+        echo"";
+        echo"</tr>";
      }
      
-    echo '</ul>';
+    echo"</table>";
 }
 
 if(isset($_POST['PID']) && !empty(trim($_POST['PID']))){
@@ -31,7 +38,7 @@ if(isset($_POST['PID']) && !empty(trim($_POST['PID']))){
     // Customer und Datenbank Klasse müssen nochmal inkludiert werden, da das PHP Formular nur von Javascript aufgerufen wird und daher die Klassen nicht vererbt bekommt. 
     //include '../model/Customer.class.php';
     include '../model/Database.class.php';
-    $db = new Database();
+    include '../model/Customer.class.php';
     $db = new Database();
     $user = new Customer();
     $user=$db->getCustomer($PID);

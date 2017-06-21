@@ -1,4 +1,11 @@
-editAngebot.php
+<table class='table table-striped'>
+    <tr>
+        <th>Nummer</th>
+        <th>Datum</th>
+        <th>Aktion</th>
+        
+    </tr>
+</table>
 <?php
 
 /* 

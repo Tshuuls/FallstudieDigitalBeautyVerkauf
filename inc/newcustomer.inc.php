@@ -30,7 +30,7 @@
               <div class="col-sm-10">
                   <input type="number" required class="form-control" id="CustPLZ" name="CustPLZ" placeholder="PLZ">
               </div>
-            
+            </div>
             <div class="form-group">
               <label for="CustLand" class="col-sm-2 control-label">Land</label>
               <div class="col-sm-10">
@@ -46,14 +46,14 @@
             </div>
             
             <div class="form-group">
-              <label for="CustTel" class="col-sm-2 control-label">Telefonnummer</label>
+              <label for="CustTel" class="col-sm-2 control-label">TelefonNr</label>
               <div class="col-sm-10">
                   <input type="text" class="form-control" id="CustTel" name="CustTel" placeholder="Tel">
               </div>
             </div>
 
             <div class="form-group">
-              <label for="CustZahlungsbedingungen" class="col-sm-2 control-label">Zahlungsbedingungen*</label>
+              <label for="CustZahlungsbedingungen" class="col-sm-2 control-label">Zahlungs-<br>bedingungen*</label>
               <div class="col-sm-10">
                   <textarea required class="form-control" rows="2" id="CustZahlungsbedingungen" name="CustZahlungsbedingungen" placeholder="Zahlungsbedingungen"></textarea>
               </div>
@@ -65,7 +65,7 @@
                     $db = new Database();
                     $statuslist = $db->getallstatus();
                     foreach($statuslist as $stat){
-                    $TempForm2 = $TempForm2 . "<option value=".$stat->getKundenstatusID().">" . $stat->getRabatt() . " %</option>";
+                    $TempForm2 = $TempForm2 . "<option value=".$stat->getKundenstatusID().">" . $stat->getRabatt() . " ".$stat->getWert()."% </option>";
                     }
                     $registerForm2 = $TempForm1 . $TempForm2 . '
                   </select>

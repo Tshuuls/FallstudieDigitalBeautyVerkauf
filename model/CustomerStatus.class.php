@@ -9,13 +9,16 @@ class CustomerStatus {
     //put your code here
     private $KundenstatusID;
     private $Rabatt;
-    
+    private $Wert;
     
 
+
     
-    public function __construct($KundenstatusID, $Rabatt) {
+    
+    public function __construct($KundenstatusID, $Rabatt, $Wert) {
         $this->KundenstatusID = $KundenstatusID;
         $this->Rabatt = $Rabatt;
+        $this->Wert = $Wert;
     }
     
     
@@ -35,4 +38,11 @@ class CustomerStatus {
         $this->Rabatt = $Rabatt;
     }
 
+    function getWert() {
+        return $this->Wert;
+    }
+
+    function setWert($Wert) {
+        $this->Wert = $Wert;
+    }
 }

@@ -1,12 +1,11 @@
-<h1>Willkommen</h1>
-<p>Sie sind eingeloggt.</p>
-<a href="index.php?site=Logout">Log Out</a>
-
-<?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+<image src="res/img/logo.svg"> 
+<div class=" col-md-offset-3" role="toolbar" aria-label="Toolbar with button groups">
+  <div class="btn-group mr-2" role="group" aria-label="Second group">
+      <a type="button" class="btn  btn-lg" href="index.php?site=auftrag" style="background-color: rgb(240,159,192);color:black" >Auftrag</a>
+    <a type="button" class="btn  btn-lg" href="index.php?site=angebot" style="background-color: rgb(240,159,192);color:black">Angebot</a>
+    <a type="button" class="btn  btn-lg" href="index.php?site=kundenverwaltung" style="background-color: rgb(240,159,192);color:black">Kunden verwalten</a>
+  </div>
+  <div class="btn-group" role="group" aria-label="Third group">
+      <a type="button" class="btn  btn-lg" href="index.php?site=Logout" style="background-color: rgb(240,159,192);color:black">Logout</a>
+  </div>
+</div>
