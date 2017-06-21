@@ -4,7 +4,7 @@
         $loginForm='
                 <div class="container col-md-4 col-md-offset-4">
              <form class="form-signin" method="post" action="index.php?site=Home" >
-            <h2 style="text-align:center">Willkommen bei<br />Digitaly Beautiful</h2>
+            <h2 style="text-align:center">Willkommen bei<br /><img src="res/img/logo-font.svg" style="height:50px"></h2>
             <label for="benutzername" class="sr-only">Benutzername</label>
             <input type="text" id="inputBenutzername" name="inputBenutzername" class="form-control" placeholder="Benutzername" required autofocus>
             <label for="inputPassword" class="sr-only" style="margin-top:5px">Passwort</label>

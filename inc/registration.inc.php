@@ -7,30 +7,32 @@
  */
 
 $registerForm = '</div>
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-6 col-md-offset-3" style="margin-top:20px">
+        <form class="form-signin" method="post" action="index.php?site=Home" >
+            <h2 style="text-align:center">Willkommen bei<br /><img src="res/img/logo-font.svg" style="height:50px"></h2>
         <form class="form-horizontal" method="POST" action="index.php?site=Home&register=true">
             
             <div class="form-group">
-              <label for="registerEmail" class="col-sm-2 control-label">Email*</label>
-              <div class="col-sm-10">
+              <label for="registerEmail" class="col-sm-3 control-label">Email*</label>
+              <div class="col-sm-9">
                   <input type="email" required class="form-control" id="registerEmail" name="registerEmail" placeholder="Email">
               </div>
             </div>
             <div class="form-group">
-              <label for="registerBenutzername" class="col-sm-2 control-label">Benutzername*</label>
-              <div class="col-sm-10">
+              <label for="registerBenutzername" class="col-sm-3 control-label">Benutzername*</label>
+              <div class="col-sm-9">
                   <input type="text" required class="form-control" id="registerBenutzername" name="registerBenutzername" placeholder="Benutzername">
               </div>
             </div>
             <div class="form-group">
-              <label for="registerPasswort" class="col-sm-2 control-label">Passwort*</label>
-              <div class="col-sm-10">
+              <label for="registerPasswort" class="col-sm-3 control-label">Passwort*</label>
+              <div class="col-sm-9">
                   <input type="password" required pattern=".{5,15}" class="form-control" id="registerPasswort" name="registerPasswort" placeholder="Passwort">
               </div>
             </div>
             <div class="form-group">
-              <label for="registerPasswort2" class="col-sm-2 control-label">Passwort wiederholen*</label>
-              <div class="col-sm-10">
+              <label for="registerPasswort2" class="col-sm-3 control-label">Passwort wiederholen*</label>
+              <div class="col-sm-9">
                   <input type="password" required pattern=".{5,15}" class="form-control" id="registerPasswort2" name="registerPasswort2" placeholder="Passwort">
               </div>
             </div>
@@ -41,6 +43,7 @@ $registerForm = '</div>
               </div>
             </div>
           </form>
+          <a href="index.php" class="btn btn-primary" style="float:right">Back</a>
             </div>';
 
 if (isset($_POST['registerBenutzername'])){
