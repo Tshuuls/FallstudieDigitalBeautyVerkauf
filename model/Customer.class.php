@@ -139,7 +139,7 @@ class Customer {
     function deleteCustomer(){
         $db =new Database();
         if ($db->checkifcustomerisinposition($this->KundenNr)){
-            $stmt = "DELETE FROM `kunde` WHERE `ProduktID`=".$this->KundenNr;
+            $stmt = "DELETE FROM `kunde` WHERE `KundenNr`=".$this->KundenNr;
             $db->deleteIt($stmt);
             return true;
         }

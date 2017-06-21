@@ -119,7 +119,7 @@ class Database {
         //include 'Customer.class.php';
         $customlist = array();
         $db= $this->connect2DB();
-        $Abfrage = "select * from kunde join kundenstatus using (KundenstatusID)";
+        $Abfrage = "select * from kunde join kundenstatus using (KundenstatusID) order by Nachname";
         $result = $db->query($Abfrage);
         if(!empty($result)){
             while ($row = $result->fetch_assoc()) {
@@ -184,7 +184,9 @@ class Database {
        $trigger = false;
        $query="SELECT count(*) as counter from angebot where KundenNR= '".$custid."'";
        $query2="SELECT count(*) as counter from auftrag where KundenNR= '".$custid."'";
-       if($result=$db->query($query)&&$result2=$db->query($query2)) {
+       $result=$db->query($query);
+       $result2=$db->query($query2);        
+       if(!empty($result)&&!empty($result2)) {
        while($zeile=$result->fetch_object()){
             if($zeile->counter == 0){ $trigger = true;}
             else {$trigger=false;}
