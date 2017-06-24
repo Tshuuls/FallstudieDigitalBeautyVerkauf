@@ -297,7 +297,7 @@ class Database {
                  while($zeile=$result->fetch_object()) {
 
                     $auftrag = new Auftrag();
-                    $auftrag->getAll($zeile->AuftragsNr, $zeile->KundenNr, $zeile->Auftrag, $zeile->Kommission, $zeile->Bezeichnung );
+                    $auftrag->getAll($zeile->AuftragsNr, $zeile->KundenNr, $zeile->Auftrag, $zeile->Kommission, $zeile->Bezeichnung, $zeile->Erstelldatum );
                     array_push($orderList, $auftrag);
                   }
                      $result->close();
