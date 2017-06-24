@@ -83,7 +83,7 @@ class AuftragsPosition {
 
     function insertAuftragPosition(){
         $db = new Database();
-        $quere="INSERT INTO `auftragspositionen`(`Auftragsposition`, `Menge`, `Kosten`, `ArtikelNr`, `AuftragssNr`) VALUES ('".$this->Auftragsposition."','".$this->Menge."','".$this->Kosten."','".$this->ArtikelNr."','".$this->AuftragssNr."')";
+        $quere="INSERT INTO `auftragspositionen`(`Auftragspositionen`, `Menge`, `Kosten`, `ArtikelNr`, `AuftragsNr`) VALUES ('".$this->Auftragsposition."','".$this->Menge."','".$this->Kosten."','".$this->ArtikelNr."','".$this->AuftragssNr."')";
         $db->insert($quere);
     }
 }
