@@ -286,7 +286,7 @@ class Database {
         return $prod;
     }
     
-            }
+            
 
     public function getOrders(){
         $orderList = array();
