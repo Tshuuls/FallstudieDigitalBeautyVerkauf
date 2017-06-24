@@ -16,6 +16,11 @@ echo "<div class='col-md-10 col-md-offset-1'>";
         include'./inc/editAngebot.inc.php';
         
         
+    }elseif(isset($_GET['type'])&&$_GET['type']==4){
+        //Angebot bestätigt
+        include'./inc/editAngebot.inc.php';
+        
+        
     }else{
         echo '<div class="col-md-offset-3" style="margin-bottom:20px">
     <a class="btn btn-primary btn-lg_Angebot" href="index.php?site=angebot&type=1">Angebot erstellen</a>

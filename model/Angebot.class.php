@@ -50,4 +50,9 @@ class Angebot {
 
     }
 
+    function deleteAngebot(){
+        $db = new Database();
+        $string="DELETE FROM `angebot` WHERE `AngebotsNr`='".$this->AngebotsNr."' and`KundenNr`='".$this->KundenNr."'";
+        $db->deleteIt($string);
+    }
 }

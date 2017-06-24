@@ -85,4 +85,10 @@ class AngebotPosition {
         $quere="INSERT INTO `angebotspositionen`(`Angebotsposition`, `Menge`, `Kosten`, `ArtikelNr`, `AngebotsNr`) VALUES ('".$this->Angebotsposition."','".$this->Menge."','".$this->Kosten."','".$this->ArtikelNr."','".$this->AngebotsNr."')";
         $db->insert($quere);
     }
+    
+    function deleteAngebotsPosition(){
+        $db = new Database();
+        $quere="DELETE FROM `angebotspositionen` WHERE `ID`='".$this->ID."' and`ArtikelNr`='".$this->ArtikelNr."' and`AngebotsNr`='".$this->AngebotsNr."'";
+        $db->deleteIt($quere);
+    }
 }
