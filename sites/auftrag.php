@@ -14,6 +14,7 @@ echo "<table class='table table-striped'>";
         echo "<th>Auftrag</th>";
         echo "<th>Kommissionierung</th>";
         echo "<th>Bezeichnung</th>";
+        echo "<th>Erstelldatum</th>";
   
              foreach ($ergebnis as $order){
                 echo"<tr>";
@@ -22,6 +23,7 @@ echo "<table class='table table-striped'>";
                     echo"<td>".$order->getAuftrag()."</td>";
                     echo"<td>".$order->getKommission()."</td>";
                     echo"<td>".$order->getBezeichnung()."</td>";
+                    echo"<td>".$order->getDatum()."</td>";
                 echo"</tr>";
              }
      

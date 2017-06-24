@@ -17,6 +17,7 @@ class auftrag {
     private $Auftrag;
     private $Kommission; //boolean, setzen wenn Auftrag da ->an Lager zur Kommissionierung
     private $Bezeichnung;
+    private $Erstelldatum;
     
     public function setAuftragsNr($AuftragsNr) {
         $this->AuftragsNr = $AuftragsNr;
@@ -54,14 +55,22 @@ class auftrag {
     public function getBezeichnung() {
         return $this->Bezeichnung;
     }
+    public function setDatum($Erstelldatum) {
+        $this->Erstelldatum = $Erstelldatum;
+    }
+    
+    public function getDatum() {
+        return $this->Erstelldatum;
+    }
 
 
-    function getAll($AuftragsNr, $KundenNr, $Auftrag, $Kommission, $Bezeichnung) {
+    function getAll($AuftragsNr, $KundenNr, $Auftrag, $Kommission, $Bezeichnung, $Erstelldatum) {
         $this->setAuftragsNr($AuftragsNr)  ;
         $this->setKundenNr($KundenNr)  ;
         $this->setAuftrag($Auftrag)  ;
         $this->setKommission($Kommission)  ;
         $this->setBezeichnung($Bezeichnung)  ;
+        $this->setDatum($Erstelldatum) ;
      }
      
      function __construct() {
