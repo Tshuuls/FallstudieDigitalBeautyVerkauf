@@ -275,9 +275,9 @@ class Database {
         
         $db= $this->connect2DB();
         $Abfrage = "select * from angebot where AngebotsNr ='$AID'";
+        $prod = new Angebot();
         if($result = $db->query($Abfrage)){
             while ($row = $result->fetch_object()) {
-                $prod = new Angebot();
                 $prod->addAllValues($row->AngebotsNr, $row->KundenNr, $row->Erstelldatum);
                 }
             $result->close();
@@ -305,5 +305,38 @@ class Database {
             $db->close();
             return $orderList;
 	}
+        
+    function insertAuftrag($angebot){
+        $db= $this->connect2DB();
+        $today = date("Y-m-d H:i:s");
+        $Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        
+        $code = "";
+        for($i=1; $i <=5;$i++){
+        $code.= sprintf('%s', $Chars[rand(0, 61)]);
+        }
+        
+        $user = new Customer();
+        $user=$this->getCustomer($angebot->getKundenNr());
+        $AuftragssNr=0;
+        
+        $Abfrage= "INSERT INTO `auftrag` ( `KundenNr`, `Auftrag`, `Kommission`, `Bezeichnung`, `Erstelldatum`) 
+            VALUES ('".$angebot->getKundenNr()."', '".$code."', '0', '".$user->getNachname()."-".$code."', '$today')";
+        $db->query($Abfrage);
+        $Abfrage= "select AuftragsNr from  `auftrag` where `KundenNr`='".$angebot->getKundenNr()."' and `Erstelldatum` = '$today'";
+        if($result = $db->query($Abfrage)){
+            while ($row = $result->fetch_object()) {
+                $AuftragssNr= $row->AuftragsNr;
+                }
+            $result->close();
+            }
+            
+      
+        $db->close();
+        return $AuftragssNr;
+    }
+    
+
+
 }
 
