@@ -10,12 +10,14 @@
         //Produkt löschen; entweder nut entfernen oder Warenkorb leeren, wenn letztes Produkt gelöscht werden soll
         elseif(isset($_POST['operation']) &&$_POST['operation'] == 'löschen')
         {
-           if(($key = array_search($_POST['produkt'], $_SESSION['warenkorb'])) !== false) {
-               if(count($_SESSION['warenkorb']==1)){
-                   $_SESSION['warenkorb']=array();
-               }else{
+            $key = array_search($_POST['PID'], $_SESSION['warenkorb']);
+           if($key != false) {
+              // if(count($_SESSION['warenkorb']==1)){
+              //     $_SESSION['warenkorb']=array();
+              // }else{
                     unset($_SESSION['warenkorb'][$key]);
-               }
+                    
+              // }
             }
             echo "<script>updateWarenkorbCount(".count($_SESSION['warenkorb']).")</script>";
         }
@@ -99,7 +101,7 @@ foreach ($ergebnis as $v) {
         <td>".$v->getArtikelname()."</td>
         <td>".$duplicateCount[$v->getArtikelNr()]."</td>
         <td>".$duplicateCount[$v->getArtikelNr()]*$v->getVerkaufspreis()." .-€</td>
-        <td><span class='fa fa-plus' aria-hidden='true'></span><span class='fa fa-minus' style='margin-left:10px' aria-hidden='true'></span></td>
+        <td><span class='fa fa-plus' aria-hidden='true' onclick='addProduktToCart(".$v->getArtikelNr().")'></span><span onclick='takeProduktFromCart(".$v->getArtikelNr().")' class='fa fa-minus' style='margin-left:10px' aria-hidden='true'></span></td>
     </tr>";
         $gesamtPreis=$gesamtPreis+$duplicateCount[$v->getArtikelNr()]*$v->getVerkaufspreis();
     }

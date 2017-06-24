@@ -30,6 +30,14 @@ function addProduktToCart(PID){
             
         });
 }
+function takeProduktFromCart(PID){
+    $.post("inc/warenkorb.inc.php", {PID : PID,operation:"löschen"})
+                .done(function( data ){
+                    $("#WarenkorbDIV").html(data);
+            
+        });
+}
+
 
 //updated den counter neben dem icon
 function updateWarenkorbCount(counter){

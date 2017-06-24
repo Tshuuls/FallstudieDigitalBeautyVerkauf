@@ -19,6 +19,8 @@ echo "<h3>".$user->getVorname()." ".$user->getNachname()."</h3>";
 <button class="btn btn-primary" onclick="warenkorbLöschen()">Warenkorb leeren</button>
 
 
+
 <?php
+echo '<a class="btn btn-primary" href="index.php?site=angebot&type=2&KID='.$_GET['KID'].'"  style="float: right">Angebot bestätigen</a>';
 echo "<script>document.getElementById('WarenkorbDIV').onload = updateWarenkorbCount(".count($_SESSION['warenkorb']).");
 document.getElementById('WarenkorbDIV').onload = updateWarenkorb();</script>";

@@ -27,6 +27,7 @@ and open the template in the editor.
             include 'model/auftrag.class.php';
             include 'model/Angebot.class.php';
             include 'model/Artikel.class.php';
+            include 'model/AngebotPosition.class.php';
         ?>
     </head>
     <body>

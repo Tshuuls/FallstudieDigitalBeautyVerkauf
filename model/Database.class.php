@@ -215,4 +215,74 @@ class Database {
         $db->close();
         return $productlist;
     }
-}
+
+    function insertAngebot($KID){
+        $today = date("Y-m-d H:i:s");
+        $db= $this->connect2DB();
+        $abfrage="INSERT INTO `angebot` ( `KundenNr`, `Erstelldatum`) VALUES ('$KID', '$today')";
+        $db->query($abfrage);
+        $abfrage="select AngebotsNr from  `angebot` where KundenNr = '$KID' and `Erstelldatum`='$today'";
+        
+        if($result = $db->query($abfrage)){
+            while ($row = $result->fetch_object()) {
+                $AngebotsNr= $row->AngebotsNr;
+                }
+            $result->close();
+            }
+            
+      
+        $db->close();
+        return $AngebotsNr;
+        
+    }
+    
+    function selectAngebotsPositionen($AID){
+    
+        $positionlist = array();
+        $db= $this->connect2DB();
+        $Abfrage = "select * from angebotspositionen where AngebotsNr = '".$AID."'";
+        if($result = $db->query($Abfrage)){
+            while ($row = $result->fetch_object()) {
+                $prod = new AngebotPosition();
+                $prod->addAllValues($row->ID, $row->Angebotsposition, $row->Menge, $row->Kosten, $row->ArtikelNr, $row->AngebotsNr);
+                array_push($positionlist, $prod);
+                }
+            $result->close();
+            }
+        $db->close();
+        return $positionlist;
+        
+    }
+    
+    function selectAllAngebote(){
+        $angebotlist = array();
+        $db= $this->connect2DB();
+        $Abfrage = "select * from angebot ";
+        if($result = $db->query($Abfrage)){
+            while ($row = $result->fetch_object()) {
+                $prod = new Angebot();
+                $prod->addAllValues($row->AngebotsNr, $row->KundenNr, $row->Erstelldatum);
+                array_push($angebotlist, $prod);
+                }
+            $result->close();
+            }
+        $db->close();
+        return $angebotlist;
+    }
+    
+    function selectOneAngebot($AID){
+        
+        $db= $this->connect2DB();
+        $Abfrage = "select * from angebot where AngebotsNr ='$AID'";
+        if($result = $db->query($Abfrage)){
+            while ($row = $result->fetch_object()) {
+                $prod = new Angebot();
+                $prod->addAllValues($row->AngebotsNr, $row->KundenNr, $row->Erstelldatum);
+                }
+            $result->close();
+            }
+        $db->close();
+        return $prod;
+    }
+    
+            }
