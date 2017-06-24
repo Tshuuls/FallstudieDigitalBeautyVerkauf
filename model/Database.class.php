@@ -215,4 +215,21 @@ class Database {
         $db->close();
         return $productlist;
     }
+    public function getOrders(){
+        $orderList = array();
+        $db= $this->connect2DB();
+
+        $sql = "select * from auftrag order by AuftragsNr";
+            if ($result = $db->query($sql)) {
+                 while($zeile=$result->fetch_object()) {
+
+                    $auftrag = new Auftrag();
+                    $auftrag->getAll($zeile->AuftragsNr, $zeile->KundenNr, $zeile->Auftrag, $zeile->Kommission, $zeile->Bezeichnung );
+                    array_push($orderList, $auftrag);
+                  }
+                     $result->close();
+            }
+            $db->close();
+            return $orderList;
+	}
 }

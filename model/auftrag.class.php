@@ -16,57 +16,53 @@ class auftrag {
     private $KundenNr;
     private $Auftrag;
     private $Kommission; //boolean, setzen wenn Auftrag da ->an Lager zur Kommissionierung
-
-public static function getAll() {
-        //alle Aufträge aus der DB laden
-        $db =new Database();
-        
-        $sql = "select * from auftrag order by AuftragsNr";
-        $db->select($sql);
-        $result=$db->query($sql); 
-        
-        $aufträge = array();
-        
-         while($zeile=$result->fetch_object()){
-
-            $auftrag = new Auftrag();
-            $auftrag->setAuftragsNr($zeile->AuftragsNr);
-            $auftrag->setKundenNr($zeile->KundenNr);
-            $auftrag->setAuftrag($zeile->Auftrag);
-            $auftrag->setKommission($zeile->Kommission);
-            $aufträge[] = $auftrag;
-        }
-        
-        return $aufträge;
-		
-    }
-    public function setAuftragsNr($auftragsNr) {
-        $this->auftragsNr = $auftragsNr;
+    private $Bezeichnung;
+    
+    public function setAuftragsNr($AuftragsNr) {
+        $this->AuftragsNr = $AuftragsNr;
     }
     public function getAuftragsNr() {
-        return $this->auftragsNr;
+        return $this->AuftragsNr;
     }
     
-    public function setKundenNr($kundenNr) {
-        $this->kundenNr = $kundenNr;
+    public function setKundenNr($KundenNr) {
+        $this->KundenNr = $KundenNr;
     }
     
     public function getKundenNr() {
-        return $this->kundenNr;
+        return $this->KundenNr;
     }
     
-    public function setAuftrag($auftrag) {
-        $this->auftrag = $auftrag;
+    public function setAuftrag($Auftrag) {
+        $this->Auftrag = $Auftrag;
     }
     
      public function getAuftrag() {
-        return $this->auftrag;
+        return $this->Auftrag;
     }
-    public function setKommission($kommission) {
-        $this->kommission = $kommission;
+    public function setKommission($Kommission) {
+        $this->Kommission = $Kommission;
     }
     
      public function getKommission() {
-        return $this->kommission;
+        return $this->Kommission;
     }
-}
+    public function setBezeichnung($Bezeichnung) {
+        $this->Bezeichnung = $Bezeichnung;
+    }
+    
+    public function getBezeichnung() {
+        return $this->Bezeichnung;
+    }
+
+
+public static function getAll($AuftragsNr, $KundenNr, $Auftrag, $Kommission, $Bezeichnung) {
+      
+        $this->setAuftragsNr($AuftragsNr)  ;
+        $this->setKundenNr($KundenNr)  ;
+        $this->setAuftrag($Auftrag)  ;
+        $this->setKommission($Kommission)  ;
+        $this->setBezeichnung($Bezeichnung)  ;
+     }
+		
+ }
