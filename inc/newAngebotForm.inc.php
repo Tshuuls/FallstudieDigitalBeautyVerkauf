@@ -22,5 +22,12 @@ echo "<h3>".$user->getVorname()." ".$user->getNachname()."</h3>";
 
 <?php
 echo '<a class="btn btn-primary" href="index.php?site=angebot&type=2&KID='.$_GET['KID'].'"  style="float: right">Angebot bestätigen</a>';
-echo "<script>document.getElementById('WarenkorbDIV').onload = updateWarenkorbCount(".count($_SESSION['warenkorb']).");
+if(isset($_SESSION['warenkorb'])){
+    echo "<script>document.getElementById('WarenkorbDIV').onload = updateWarenkorbCount(".count($_SESSION['warenkorb']).");
 document.getElementById('WarenkorbDIV').onload = updateWarenkorb();</script>";
+}else{
+    $_SESSION['warenkorb']=array();
+    echo "<script>document.getElementById('WarenkorbDIV').onload = updateWarenkorbCount(".count($_SESSION['warenkorb']).");
+document.getElementById('WarenkorbDIV').onload = updateWarenkorb();</script>";
+}
+
