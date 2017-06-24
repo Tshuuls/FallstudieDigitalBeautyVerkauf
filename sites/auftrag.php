@@ -1,7 +1,6 @@
 <?php    // include '../model/Database.class.php';
           //include '../model/Auftrag.class.php';
-//Liste anzeigen lassen der versendeten Aufträge samt Auftragsnummer--
-//echo"blbla";
+//Liste anzeigen lassen der versendeten Aufträge samt Auftragsnummer
 
     $db = new Database();
     
@@ -20,9 +19,9 @@ echo "<table class='table table-striped'>";
                 echo"<tr>";
                     echo"<td>".$order->getAuftragsNr()."</td>";
                     echo"<td>".$order->getKundenNr()."</td>";
-                    echo"<td>".$a->getAuftrag()."</td>";
-                    echo"<td>".$a->getKommission()."</td>";
-                    echo"<td>".$a->getBezeichnung()."</td>";
+                    echo"<td>".$order->getAuftrag()."</td>";
+                    echo"<td>".$order->getKommission()."</td>";
+                    echo"<td>".$order->getBezeichnung()."</td>";
                 echo"</tr>";
              }
      

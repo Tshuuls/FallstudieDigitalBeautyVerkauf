@@ -56,12 +56,15 @@ class auftrag {
     }
 
 
-public static function getAll($AuftragsNr, $KundenNr, $Auftrag, $Kommission, $Bezeichnung) {
+    function getAll($AuftragsNr, $KundenNr, $Auftrag, $Kommission, $Bezeichnung) {
         $this->setAuftragsNr($AuftragsNr)  ;
         $this->setKundenNr($KundenNr)  ;
         $this->setAuftrag($Auftrag)  ;
         $this->setKommission($Kommission)  ;
         $this->setBezeichnung($Bezeichnung)  ;
      }
-		
+     
+     function __construct() {
+
+    }
  }
