@@ -215,7 +215,7 @@ class Database {
         $db->close();
         return $productlist;
     }
-<<<<<<< HEAD
+
 
     function insertAngebot($KID){
         $today = date("Y-m-d H:i:s");
@@ -287,7 +287,7 @@ class Database {
     }
     
             }
-=======
+
     public function getOrders(){
         $orderList = array();
         $db= $this->connect2DB();
@@ -306,4 +306,4 @@ class Database {
             return $orderList;
 	}
 }
->>>>>>> b52f5e90f6b2ccdccfde797808eab4fd007d042d
+
