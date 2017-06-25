@@ -336,7 +336,23 @@ class Database {
         return $AuftragssNr;
     }
     
+    public function getOrderPosition(){
+        $orderPosition = array();
+        $db= $this->connect2DB();
 
+        $sql = "select * from auftragspositionen WHERE AuftragsNr= '$AuftragsNr'";
+            if ($result = $db->query($sql)) {
+                 while($zeile=$result->fetch_object()) {
+
+                    $position = new Position();
+                    $position->getPosition($zeile->ID, $zeile->Auftragspositionen, $zeile->Menge, $zeile->Kosten, $zeile->ArtikelNr, $zeile->AuftragsNr );
+                    array_push($orderPosition, $position);
+                  }
+                     $result->close();
+            }
+            $db->close();
+            return $orderPosition;
+	}
 
 }
 

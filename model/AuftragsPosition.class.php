@@ -19,7 +19,7 @@ class AuftragsPosition {
     private $Menge ;
     private $Kosten ;
     private $ArtikelNr ;
-    private $AuftragssNr ;
+    private $AuftragsNr ;
     function getID() {
         return $this->ID;
     }
@@ -40,8 +40,8 @@ class AuftragsPosition {
         return $this->ArtikelNr;
     }
 
-    function getAuftragssNr() {
-        return $this->AuftragssNr;
+    function getAuftragsNr() {
+        return $this->AuftragsNr;
     }
 
     function setID($ID) {
@@ -64,17 +64,17 @@ class AuftragsPosition {
         $this->ArtikelNr = $ArtikelNr;
     }
 
-    function setAuftragssNr($AuftragssNr) {
-        $this->AuftragssNr = $AuftragssNr;
+    function setAuftragsNr($AuftragsNr) {
+        $this->AuftragsNr = $AuftragsNr;
     }
 
-    function addAllValues($ID, $Auftragsposition, $Menge, $Kosten, $ArtikelNr, $AuftragssNr) {
+    function addAllValues($ID, $Auftragsposition, $Menge, $Kosten, $ArtikelNr, $AuftragsNr) {
         $this->setID($ID);
         $this->setAuftragsposition($Auftragsposition);
         $this->setMenge($Menge);
         $this->setKosten ($Kosten);
         $this->setArtikelNr($ArtikelNr);
-        $this->setAuftragssNr($AuftragssNr);
+        $this->setAuftragsNr($AuftragsNr);
     }
     
     function __construct() {
@@ -83,7 +83,15 @@ class AuftragsPosition {
 
     function insertAuftragPosition(){
         $db = new Database();
-        $quere="INSERT INTO `auftragspositionen`(`Auftragspositionen`, `Menge`, `Kosten`, `ArtikelNr`, `AuftragsNr`) VALUES ('".$this->Auftragsposition."','".$this->Menge."','".$this->Kosten."','".$this->ArtikelNr."','".$this->AuftragssNr."')";
+        $quere="INSERT INTO `auftragspositionen`(`Auftragspositionen`, `Menge`, `Kosten`, `ArtikelNr`, `AuftragsNr`) VALUES ('".$this->Auftragsposition."','".$this->Menge."','".$this->Kosten."','".$this->ArtikelNr."','".$this->AuftragsNr."')";
         $db->insert($quere);
     }
+       function getPosition($ID, $Auftragsposition, $Menge, $Kosten, $ArtikelNr, $AuftragsNr) {
+        $this->setID($ID)  ;
+        $this->setAuftragsposition($Auftragsposition)  ;
+        $this->setMenge($Menge)  ;
+        $this->setKosten($Kosten)  ;
+        $this->setArtikelNr($ArtikelNr)  ;
+        $this->setAuftragsNr($AuftragsNr) ;
+     }
 }
