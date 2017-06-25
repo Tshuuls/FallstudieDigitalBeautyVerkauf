@@ -1,4 +1,4 @@
-<?php    // include '../model/Database.class.php';
+<?php     //include './inc/getAuftragsposition.inc.php';
           //include '../model/Auftrag.class.php';
 //Liste anzeigen lassen der versendeten Aufträge samt Auftragsnummer
 
@@ -17,12 +17,12 @@ echo "<table class='table table-striped'>";
         echo "<th>Erstelldatum</th>";
   
              foreach ($ergebnis as $order){
-                $active = "";
+                //$active = "";
                 //if($cat == $Kategorie->getKategorieID()) {
-                    $active = "active";
+                   // $active = "active";
                 //}
                 echo"<tr>";
-                    echo"<td <a href='index.php?page=getAuftragsposition>".$order->getAuftragsNr()."</a></td>";
+                    echo"<td <a href='index.php?site=getAuftragsposition>".$order->getAuftragsNr()."</a></td>";
                     echo"<td>".$order->getKundenNr()."</td>";
                     echo"<td>".$order->getAuftrag()."</td>";
                     echo"<td>".$order->getKommission()."</td>";

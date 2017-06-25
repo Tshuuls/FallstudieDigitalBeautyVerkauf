@@ -24,7 +24,7 @@ and open the template in the editor.
             include 'model/Database.class.php';
             include 'model/Customer.class.php';
             include 'model/User.class.php';
-            include 'model/auftrag.class.php';
+            include 'model/Auftrag.class.php';
             include 'model/Angebot.class.php';
             include 'model/Artikel.class.php';
             include 'model/AngebotPosition.class.php';
