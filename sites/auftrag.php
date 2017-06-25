@@ -6,7 +6,7 @@
     
     $ergebnis = $db->getOrders();
     
-echo "<h3>Liste der Aufträge</h3>";
+echo "<h3>Auftragsliste</h3>";
 echo "<table class='table table-striped'>";
 
         echo "<th>Auftragsnummer</th>";
@@ -17,8 +17,12 @@ echo "<table class='table table-striped'>";
         echo "<th>Erstelldatum</th>";
   
              foreach ($ergebnis as $order){
+                $active = "";
+                //if($cat == $Kategorie->getKategorieID()) {
+                    $active = "active";
+                //}
                 echo"<tr>";
-                    echo"<td>".$order->getAuftragsNr()."</td>";
+                    echo"<td <a href='index.php?page=getAuftragsposition>".$order->getAuftragsNr()."></a></td>";
                     echo"<td>".$order->getKundenNr()."</td>";
                     echo"<td>".$order->getAuftrag()."</td>";
                     echo"<td>".$order->getKommission()."</td>";
@@ -30,9 +34,10 @@ echo "<table class='table table-striped'>";
 echo "</table>";
 
 
-//Auftrag erstellen - hole mir die AuftragsListe von Julia
-    //$Auftrag = Auftrag::getAll();
-
 //wenn ich den Auftrag anklicke, dass er die Auftragspositionen aufmacht
-
+//0=Auftrag offen; 1=Auftrag bereit zur Kommissionierung; 2=Auftrag kommissioniert und versendet
 //kommissionierungsnr erstellen, damit es weiter geht ans Lager
+
+               
+               //echo "<li role='presentation' class='$active'><a href='index.php?page=produkte&cat=" .$Kategorie->getKategorieID() ."'>" . $Kategorie->getKategorieName() . "</a></li>";
+           
