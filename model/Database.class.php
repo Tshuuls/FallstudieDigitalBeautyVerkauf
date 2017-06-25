@@ -340,7 +340,7 @@ class Database {
         $orderPosition = array();
         $db= $this->connect2DB();
 
-        $sql = "select * from auftragspositionen WHERE AuftragsNr= '$AuftragsNr'";
+        $sql = "select * from auftragspositionen WHERE AuftragsNr= '".$AuftragsNr."'";
             if ($result = $db->query($sql)) {
                  while($zeile=$result->fetch_object()) {
 
