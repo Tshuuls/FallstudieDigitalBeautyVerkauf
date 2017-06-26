@@ -293,7 +293,7 @@ class Database {
         $auftrag = new Auftrag();
         if($result = $db->query($Abfrage)){
             while ($zeile = $result->fetch_object()) {
-                $auftrag->addAllValues($zeile->AuftragsNr, $zeile->KundenNr, $zeile->Auftrag, $zeile->Kommission, $zeile->Bezeichnung, $zeile->Erstelldatum);
+                $auftrag->getAll($zeile->AuftragsNr, $zeile->KundenNr, $zeile->Auftrag, $zeile->Kommission, $zeile->Bezeichnung, $zeile->Erstelldatum,"");
                 }
             $result->close();
             }

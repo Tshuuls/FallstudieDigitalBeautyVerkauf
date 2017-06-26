@@ -28,16 +28,17 @@ if($_GET['type']==1){
             <td>".$position->getAuftragsposition()."</td>
             <td>".$position->getArtikelname()."</td>
             <td>".$position->getMenge()."</td>
-            <td>".$position->getKosten()." .-€</td>
+            <td>".$position->getKosten()." €</td>
             </tr>";
             $gesamtPreis=$gesamtPreis+$position->getKosten();
     }
     echo"
         <tr>
-            <td colspan='2'>Gesamtpreis</td>
-            <td>".$gesamtPreis." .-€</td>
+            <td colspan='3'>Gesamtpreis</td>
+            <td>".$gesamtPreis.".-€</td>
         </tr>";
 
     echo"</table>";
     echo '<a class="btn btn-primary" href="index.php?site=auftrag&type=2&OID='.$_GET['OID'].'">Auftrag bestätigen</a>';
+    echo '<a class="btn btn-primary" href="index.php?site=auftrag&type=3&OID='.$_GET['OID'].'">Rechnung erstellen</a>';
 }
