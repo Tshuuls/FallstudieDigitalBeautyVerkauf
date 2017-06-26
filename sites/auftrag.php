@@ -22,7 +22,7 @@ echo "<table class='table table-striped'>";
                    // $active = "active";
                 //}
                 echo"<tr>";
-                    echo"<td <a href='index.php?site=getAuftragsposition>".$order->getAuftragsNr()."</a></td>";
+                    echo"<td <a href='index.php?site=getAuftragsposition&type=>".$order->getAuftragsNr()."</a></td>";
                     echo"<td>".$order->getKundenNr()."</td>";
                     echo"<td>".$order->getAuftrag()."</td>";
                     echo"<td>".$order->getKommission()."</td>";
