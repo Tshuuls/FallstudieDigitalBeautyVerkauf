@@ -1,0 +1,43 @@
+<?php
+
+$db = new Database();
+
+$user = new Customer();
+$user=$db->getCustomer($_GET['KID']);
+$auftrag = new Auftrag();
+$auftrag= $db->selectOneAuftrag($_GET['OID']);
+$auftragsPositionsListe= $db->getOrderPosition($_GET['OID']);
+
+if($_GET['type']==1){
+
+    echo "<h3>".$user->getVorname()." ".$user->getNachname()."</h3>";
+    echo "<h4>Auftragssnummer: ".$auftrag->getBezeichnung()."</h4>";
+    echo "<h4>Erstellungsdatum: ".$auftrag->getErstelldatum()."</h4>";
+
+     echo "<table  class='table table-striped'>
+        <tr>
+            <th>Position</th>
+            <th>Name</th>
+            <th>Anzahl</th>
+            <th>Preis</th>
+        </tr>
+        ";
+     $gesamtPreis=0;
+    foreach ($auftragsPositionsListe as $position){
+       echo" <tr>
+            <td>".$position->getAuftragsposition()."</td>
+            <td>".$position->getArtikelname()."</td>
+            <td>".$position->getMenge()."</td>
+            <td>".$position->getKosten()." .-€</td>
+            </tr>";
+            $gesamtPreis=$gesamtPreis+$position->getKosten();
+    }
+    echo"
+        <tr>
+            <td colspan='2'>Gesamtpreis</td>
+            <td>".$gesamtPreis." .-€</td>
+        </tr>";
+
+    echo"</table>";
+    echo '<a class="btn btn-primary" href="index.php?site=auftrag&type=2&OID='.$_GET['OID'].'">Auftrag bestätigen</a>';
+}

@@ -286,18 +286,34 @@ class Database {
         return $prod;
     }
     
+        function selectOneAuftrag($OID){
+        
+        $db= $this->connect2DB();
+        $Abfrage = "select * from auftrag where AuftragsNr ='$OID'";
+        $auftrag = new Auftrag();
+        if($result = $db->query($Abfrage)){
+            while ($zeile = $result->fetch_object()) {
+                $auftrag->addAllValues($zeile->AuftragsNr, $zeile->KundenNr, $zeile->Auftrag, $zeile->Kommission, $zeile->Bezeichnung, $zeile->Erstelldatum);
+                }
+            $result->close();
+            }
+        $db->close();
+        return $auftrag;
+    }
+    
+    
             
 
     public function getOrders(){
         $orderList = array();
         $db= $this->connect2DB();
 
-        $sql = "select * from auftrag order by AuftragsNr";
+        $sql = "select * from auftrag join kunde using (KundenNr) order by Erstelldatum DESC";
             if ($result = $db->query($sql)) {
                  while($zeile=$result->fetch_object()) {
 
                     $auftrag = new Auftrag();
-                    $auftrag->getAll($zeile->AuftragsNr, $zeile->KundenNr, $zeile->Auftrag, $zeile->Kommission, $zeile->Bezeichnung, $zeile->Erstelldatum );
+                    $auftrag->getAll($zeile->AuftragsNr, $zeile->KundenNr, $zeile->Auftrag, $zeile->Kommission, $zeile->Bezeichnung, $zeile->Erstelldatum,$zeile->Vorname.' '.$zeile->Nachname );
                     array_push($orderList, $auftrag);
                   }
                      $result->close();
@@ -336,16 +352,16 @@ class Database {
         return $AuftragssNr;
     }
     
-    public function getOrderPosition(){
+    function getOrderPosition($AuftragsNr){
         $orderPosition = array();
         $db= $this->connect2DB();
 
-        $sql = "select * from auftragspositionen WHERE AuftragsNr= '".$AuftragsNr."'";
+        $sql = "select * from auftragspositionen join Artikel using (ArtikelNr) WHERE AuftragsNr= '".$AuftragsNr."'";
             if ($result = $db->query($sql)) {
                  while($zeile=$result->fetch_object()) {
 
-                    $position = new Position();
-                    $position->getPosition($zeile->ID, $zeile->Auftragspositionen, $zeile->Menge, $zeile->Kosten, $zeile->ArtikelNr, $zeile->AuftragsNr );
+                    $position = new AuftragsPosition();
+                    $position->setPosition($zeile->ID, $zeile->Auftragspositionen, $zeile->Menge, $zeile->Kosten, $zeile->ArtikelNr, $zeile->AuftragsNr, $zeile->Artikelname );
                     array_push($orderPosition, $position);
                   }
                      $result->close();

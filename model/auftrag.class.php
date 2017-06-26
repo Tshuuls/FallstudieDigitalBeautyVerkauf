@@ -18,7 +18,28 @@ class auftrag {
     private $Kommission; //boolean, setzen wenn Auftrag da ->an Lager zur Kommissionierung
     private $Bezeichnung;
     private $Erstelldatum;
+    private $Kundenname;
     
+    function getKundenname() {
+        return $this->Kundenname;
+    }
+
+    function setKundenname($Kundenname) {
+        $this->Kundenname = $Kundenname;
+    }
+
+        function getErstelldatum() {
+        return $this->Erstelldatum;
+    }
+
+   
+
+    function setErstelldatum($Erstelldatum) {
+        $this->Erstelldatum = $Erstelldatum;
+    }
+
+    
+
     public function setAuftragsNr($AuftragsNr) {
         $this->AuftragsNr = $AuftragsNr;
     }
@@ -64,16 +85,20 @@ class auftrag {
     }
 
 
-    function getAll($AuftragsNr, $KundenNr, $Auftrag, $Kommission, $Bezeichnung, $Erstelldatum) {
+    function getAll($AuftragsNr, $KundenNr, $Auftrag, $Kommission, $Bezeichnung, $Erstelldatum,$Kundenname) {
         $this->setAuftragsNr($AuftragsNr)  ;
         $this->setKundenNr($KundenNr)  ;
         $this->setAuftrag($Auftrag)  ;
         $this->setKommission($Kommission)  ;
         $this->setBezeichnung($Bezeichnung)  ;
         $this->setDatum($Erstelldatum) ;
+        $this->setKundenname($Kundenname);
      }
      
      function __construct() {
 
     }
+    
+    
+    
  }

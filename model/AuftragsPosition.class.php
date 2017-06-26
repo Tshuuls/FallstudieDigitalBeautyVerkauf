@@ -20,7 +20,17 @@ class AuftragsPosition {
     private $Kosten ;
     private $ArtikelNr ;
     private $AuftragsNr ;
-    function getID() {
+    private $Artikelname;
+    
+    function getArtikelname() {
+        return $this->Artikelname;
+    }
+
+    function setArtikelname($Artikelname) {
+        $this->Artikelname = $Artikelname;
+    }
+
+        function getID() {
         return $this->ID;
     }
 
@@ -86,12 +96,13 @@ class AuftragsPosition {
         $quere="INSERT INTO `auftragspositionen`(`Auftragspositionen`, `Menge`, `Kosten`, `ArtikelNr`, `AuftragsNr`) VALUES ('".$this->Auftragsposition."','".$this->Menge."','".$this->Kosten."','".$this->ArtikelNr."','".$this->AuftragsNr."')";
         $db->insert($quere);
     }
-       function getPosition($ID, $Auftragsposition, $Menge, $Kosten, $ArtikelNr, $AuftragsNr) {
+       function setPosition($ID, $Auftragsposition, $Menge, $Kosten, $ArtikelNr, $AuftragsNr,$Artikelname) {
         $this->setID($ID)  ;
         $this->setAuftragsposition($Auftragsposition)  ;
         $this->setMenge($Menge)  ;
         $this->setKosten($Kosten)  ;
         $this->setArtikelNr($ArtikelNr)  ;
         $this->setAuftragsNr($AuftragsNr) ;
+        $this->setArtikelname($Artikelname) ;
      }
 }

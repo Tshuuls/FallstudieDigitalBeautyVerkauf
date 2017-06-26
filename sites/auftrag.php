@@ -1,38 +1,22 @@
 <?php     //include './inc/getAuftragsposition.inc.php';
           //include '../model/Auftrag.class.php';
 //Liste anzeigen lassen der versendeten Aufträge samt Auftragsnummer
-
-    $db = new Database();
-    
-    $ergebnis = $db->getOrders();
-    
-echo "<h3>Auftragsliste</h3>";
-echo "<table class='table table-striped'>";
-
-        echo "<th>Auftragsnummer</th>";
-        echo "<th>Kundennummer</th>";
-        echo "<th>Auftrag</th>";
-        echo "<th>Kommissionierung</th>";
-        echo "<th>Bezeichnung</th>";
-        echo "<th>Erstelldatum</th>";
-  
-             foreach ($ergebnis as $order){
-                $active = "";
-                if($type == $ergebnis->getID()) {
-                   $active = "active";
-                }
-                echo"<tr>";
-                    echo"<td class ='$active'><a href='index.php?site=getAuftragsposition&type=>".$order->getAuftragsNr()."</a></td>";
-                    echo"<td>".$order->getKundenNr()."</td>";
-                    echo"<td>".$order->getAuftrag()."</td>";
-                    echo"<td>".$order->getKommission()."</td>";
-                    echo"<td>".$order->getBezeichnung()."</td>";
-                    echo"<td>".$order->getDatum()."</td>";
-                echo"</tr>";
-             }
-     
-echo "</table>";
-
+ if(isset($_GET['type']))
+        {
+        if($_GET['type']=="1" && isset($_GET['OID'])&& isset ($_GET['KID']))
+            {
+            include './inc/editAuftrag.inc.php';
+            }
+        
+        else if($_GET['type']=="2" && isset($_GET['OID'])&& isset ($_GET['KID']))
+            {
+                echo "Test";
+            }
+      }  
+ else {
+     include './inc/listAuftrag.inc.php';
+   
+ }
 
 //wenn ich den Auftrag anklicke, dass er die Auftragspositionen aufmacht
 //0=Auftrag offen; 1=Auftrag bereit zur Kommissionierung; 2=Auftrag kommissioniert und versendet
