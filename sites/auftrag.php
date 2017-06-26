@@ -17,12 +17,12 @@ echo "<table class='table table-striped'>";
         echo "<th>Erstelldatum</th>";
   
              foreach ($ergebnis as $order){
-                //$active = "";
-                //if($cat == $Kategorie->getKategorieID()) {
-                   // $active = "active";
-                //}
+                $active = "";
+                if($type == $ergebnis->getID()) {
+                   $active = "active";
+                }
                 echo"<tr>";
-                    echo"<td <a href='index.php?site=getAuftragsposition&type=>".$order->getAuftragsNr()."</a></td>";
+                    echo"<td class ='$active'><a href='index.php?site=getAuftragsposition&type=>".$order->getAuftragsNr()."</a></td>";
                     echo"<td>".$order->getKundenNr()."</td>";
                     echo"<td>".$order->getAuftrag()."</td>";
                     echo"<td>".$order->getKommission()."</td>";
