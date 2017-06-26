@@ -44,7 +44,7 @@ if($_GET['type']==3){
     $auftragsPos = new AuftragsPosition();
     foreach ($angebotsPositionsListe as $position){
        $auftragsPos->setAuftragsposition($position->getAngebotsposition());
-       $auftragsPos->setAuftragssNr($aufnr);
+       $auftragsPos->setAuftragsNr($aufnr);
        $auftragsPos->setKosten($position->getKosten());
        $auftragsPos->setMenge($position->getMenge());
        $auftragsPos->setArtikelNr($position->getArtikelNr());
