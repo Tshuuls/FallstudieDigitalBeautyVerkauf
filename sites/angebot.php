@@ -32,7 +32,11 @@ $db = new Database;
            $position->deleteAngebotsPosition();
         }
         $angebot->deleteAngebot();
-        echo '<div class="col-md-offset-3" style="margin-bottom:20px">
+        echo '<div class="alert alert-success">
+                Angebot '.$_GET['AID'].' wurde gelöscht
+              </div>
+              <div class="col-md-offset-3" style="margin-bottom:20px">
+            
             <a class="btn btn-primary btn-lg_Angebot" href="index.php?site=angebot&type=1">Angebot erstellen</a>
         </div>';
         $angebotlist= $db->selectAllAngebote();
