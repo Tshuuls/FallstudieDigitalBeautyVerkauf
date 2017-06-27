@@ -19,7 +19,7 @@
             $loginUser =new User();
             $loginUser->setUsername($_POST['inputBenutzername']);
             $loginUser->setPasswort($_POST['inputPasswort']);
-            var_dump($loginUser);
+            //var_dump($loginUser);
             $result=$loginUser->loginUser();
             //echo $passwordHashed;
             //var_dump($_POST) ;

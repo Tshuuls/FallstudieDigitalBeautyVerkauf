@@ -88,6 +88,7 @@ $duplicateCount = array_count_values($_SESSION['warenkorb']);
 $user = $db->getCustomer($_SESSION['KID']);
 $kundenRabatt=$db->getRabatt($user->getKundenstatusID());
 $rabatt=1-($kundenRabatt/100);
+$lieferzeit=0;
 echo "<table  class='table table-striped'>
     <tr>
         <th>Name</th>
@@ -107,6 +108,9 @@ foreach ($ergebnis as $v) {
         <td><span class='fa fa-plus' aria-hidden='true' onclick='addProduktToCart(".$v->getArtikelNr().")'></span><span onclick='takeProduktFromCart(".$v->getArtikelNr().")' class='fa fa-minus' style='margin-left:10px' aria-hidden='true'></span></td>
     </tr>";
         $gesamtPreis=$gesamtPreis+$duplicateCount[$v->getArtikelNr()]*$v->getVerkaufspreis()*$rabatt;
+        if($v->getLieferdauerstatus()>$lieferzeit){
+            $lieferzeit=$v->getLieferdauerstatus();
+        }
     }
 }
     
@@ -114,6 +118,12 @@ foreach ($ergebnis as $v) {
     <tr>
         <td colspan='2'>Gesamtpreis</td>
         <td>".$gesamtPreis." €</td>
+        <td></td>
+    </tr>";
+    echo"
+    <tr>
+        <td colspan='2'>Lieferzeit</td>
+        <td>ca. ".$lieferzeit." Tage</td>
         <td></td>
     </tr>";
 
