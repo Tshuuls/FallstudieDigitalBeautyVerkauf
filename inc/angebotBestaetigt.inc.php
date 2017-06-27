@@ -16,7 +16,7 @@ $ergebnis = $db->getallArtikel();
 $duplicateCount = array_count_values($_SESSION['warenkorb']);
 $AID=$db->insertAngebot($_GET['KID']);
 $angebotPos = new AngebotPosition();
-echo "<table  class='table table-striped'>
+echo "<form action='mailto:".$user->getEmail()."' method='post' enctype='text/plain'><table  class='table table-striped'>
     <tr>
         <th>Name</th>
         <th>Anzahl</th>
@@ -35,8 +35,11 @@ foreach ($ergebnis as $v) {
         echo"
     <tr>
         <td>".$v->getArtikelname()."</td>
+            <input type='text' name='Artikelname' style='display:none' value='".$v->getArtikelname()."'>
         <td>".$duplicateCount[$v->getArtikelNr()]."</td>
+            <input type='number' name='Anzahl' style='display:none' value='".$duplicateCount[$v->getArtikelNr()]."'>
         <td>".$duplicateCount[$v->getArtikelNr()]*$v->getVerkaufspreis()." .-€</td>
+            <input type='number' name='Preis' style='display:none' value='".$duplicateCount[$v->getArtikelNr()]*$v->getVerkaufspreis()."'>
         </tr>";
         $gesamtPreis=$gesamtPreis+$duplicateCount[$v->getArtikelNr()]*$v->getVerkaufspreis();
     }
@@ -46,7 +49,8 @@ foreach ($ergebnis as $v) {
     <tr>
         <td colspan='2'>Gesamtpreis</td>
         <td>".$gesamtPreis." .-€</td>
+            <input type='number' name='Gesamtpreis' style='display:none' value='".$gesamtPreis."'>
     </tr>";
 
-echo"</table>";
+echo"</table><input type='submit' value='Angebot per Email senden'></form>";
 echo "<script>warenkorbLöschen()</script>";

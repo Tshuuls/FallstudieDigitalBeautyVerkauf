@@ -80,11 +80,14 @@
  */
 include '../model/Database.class.php';
 include '../model/Artikel.class.php';
+include '../model/Customer.class.php';
 $db = new Database();
 $gesamtPreis=0;
 $ergebnis = $db->getallArtikel();
 $duplicateCount = array_count_values($_SESSION['warenkorb']);
-
+$user = $db->getCustomer($_SESSION['KID']);
+$kundenRabatt=$db->getRabatt($user->getKundenstatusID());
+$rabatt=1-($kundenRabatt/100);
 echo "<table  class='table table-striped'>
     <tr>
         <th>Name</th>
@@ -100,17 +103,17 @@ foreach ($ergebnis as $v) {
     <tr>
         <td>".$v->getArtikelname()."</td>
         <td>".$duplicateCount[$v->getArtikelNr()]."</td>
-        <td>".$duplicateCount[$v->getArtikelNr()]*$v->getVerkaufspreis()." .-€</td>
+        <td>".$duplicateCount[$v->getArtikelNr()]*$v->getVerkaufspreis()*$rabatt." €</td>
         <td><span class='fa fa-plus' aria-hidden='true' onclick='addProduktToCart(".$v->getArtikelNr().")'></span><span onclick='takeProduktFromCart(".$v->getArtikelNr().")' class='fa fa-minus' style='margin-left:10px' aria-hidden='true'></span></td>
     </tr>";
-        $gesamtPreis=$gesamtPreis+$duplicateCount[$v->getArtikelNr()]*$v->getVerkaufspreis();
+        $gesamtPreis=$gesamtPreis+$duplicateCount[$v->getArtikelNr()]*$v->getVerkaufspreis()*$rabatt;
     }
 }
     
     echo"
     <tr>
         <td colspan='2'>Gesamtpreis</td>
-        <td>".$gesamtPreis." .-€</td>
+        <td>".$gesamtPreis." €</td>
         <td></td>
     </tr>";
 

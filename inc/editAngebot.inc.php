@@ -7,7 +7,7 @@ $user=$db->getCustomer($_GET['KID']);
 $angebot= new Angebot();
 $angebot= $db->selectOneAngebot($_GET['AID']);
 $angebotsPositionsListe= $db->selectAngebotsPositionen($_GET['AID']);
-
+//angebot bearbeiten
 if($_GET['type']==3){
 
     echo "<h3>".$user->getVorname()." ".$user->getNachname()."</h3>";
@@ -38,18 +38,23 @@ if($_GET['type']==3){
 
     echo"</table>";
     echo '<a class="btn btn-primary" href="index.php?site=angebot&type=4&AID='.$_GET['AID'].'&KID='.$_GET['KID'].'">In Auftrag umwandeln</a>';
-}else if($_GET['type']==4){
+    echo '<a class="btn btn-primary" style="float:right" href="index.php?site=angebot&type=6&AID='.$_GET['AID'].'&KID='.$_GET['KID'].'">Angebot bearbeiten</a>';
+
+    //angebot in Auftrag umwandeln
+    }else if($_GET['type']==4){
     $aufnr=$db->insertAuftrag($angebot);
-    var_dump($angebot);
+    //var_dump($angebot);
     $auftragsPos = new AuftragsPosition();
+    $pos=10;
     foreach ($angebotsPositionsListe as $position){
-       $auftragsPos->setAuftragsposition($position->getAngebotsposition());
+       $auftragsPos->setAuftragsposition($pos);
        $auftragsPos->setAuftragsNr($aufnr);
        $auftragsPos->setKosten($position->getKosten());
        $auftragsPos->setMenge($position->getMenge());
        $auftragsPos->setArtikelNr($position->getArtikelNr());
        $auftragsPos->insertAuftragPosition();
        $position->deleteAngebotsPosition();
+       $pos=$pos+10;
     }
     $angebot->deleteAngebot();
     

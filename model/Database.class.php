@@ -370,5 +370,18 @@ class Database {
             return $orderPosition;
 	}
 
+    function getRabatt($KundenstatusID){
+        $db= $this->connect2DB();
+        $rabat=0;
+        $sql="SELECT Wert FROM kundenstatus where KundenstatusID = '".$KundenstatusID."'";
+        if ($result = $db->query($sql)) {
+                 while($zeile=$result->fetch_object()) {
+                    $rabat = $zeile->Wert;
+                  }
+                     $result->close();
+            }
+            $db->close();
+            return $rabat;
+    }
 }
 

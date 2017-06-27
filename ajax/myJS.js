@@ -23,15 +23,15 @@ function searchKunde(S){
         });
     }
     
-function addProduktToCart(PID){
-    $.post("inc/warenkorb.inc.php", {PID : PID,operation:"add"})
+function addProduktToCart(PID,KID){
+    $.post("inc/warenkorb.inc.php", {PID : PID,operation:"add",KID:KID})
                 .done(function( data ){
                     $("#WarenkorbDIV").html(data);
             
         });
 }
-function takeProduktFromCart(PID){
-    $.post("inc/warenkorb.inc.php", {PID : PID,operation:"löschen"})
+function takeProduktFromCart(PID,KID){
+    $.post("inc/warenkorb.inc.php", {PID : PID,operation:"löschen",KID:KID})
                 .done(function( data ){
                     $("#WarenkorbDIV").html(data);
             
@@ -52,10 +52,10 @@ function warenkorbLöschen(){
         
 }
 
-function updateWarenkorb(){
-    $.post("inc/warenkorb.inc.php", {})
+function updateWarenkorb(KID){
+    $.post("inc/warenkorb.inc.php", {KID:KID})
                 .done(function( data ){
                     $("#WarenkorbDIV").html(data);
             
         });
-}
+} 
