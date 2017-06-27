@@ -9,7 +9,7 @@
         
         echo "<table class='table table-striped'>";
         
-        echo "<th>AuftragsNr</th>";
+        echo "<th>Auftrag</th>";
         echo "<th>Kunde</th>";
         echo "<th>Kommissionierung</th>";
         echo "<th>Erstelldatum</th>";

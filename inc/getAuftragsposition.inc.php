@@ -5,11 +5,11 @@
     
 echo "<h3>Auftragspositionen</h3>";
 
-//
+
     if (!empty($_GET['type'])) {
         $type= $_GET['type'];
         $ergebnis = AuftragsPosition::getPosition($type);
-        //ich hab keine Ahnung, ob das richtig ist 
+
         
     }
 echo "<table class='table table-striped'>";
