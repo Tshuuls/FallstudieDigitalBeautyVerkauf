@@ -16,7 +16,7 @@ if($_GET['type']==3){
 
      echo "<table  class='table table-striped'>
         <tr>
-            <th>Name</th>
+            <th>Nummer</th>
             <th>Anzahl</th>
             <th>Preis</th>
         </tr>

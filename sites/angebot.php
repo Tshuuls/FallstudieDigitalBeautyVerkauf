@@ -42,7 +42,7 @@ $db = new Database;
         $angebotlist= $db->selectAllAngebote();
         echo "<table class='table table-striped'>
             <tr>
-                <th>Nummer</th>
+                <th>Angebotsnummer</th>
                 <th>Kunde</th>
                 <th>Datum</th>
                 <th>Aktion</th>
@@ -101,7 +101,7 @@ $db = new Database;
         $angebotlist= $db->selectAllAngebote();
         echo "<table class='table table-striped'>
             <tr>
-                <th>Nummer</th>
+                <th>Angebotsnummer</th>
                 <th>Kunde</th>
                 <th>Datum</th>
                 <th>Aktion</th>
