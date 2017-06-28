@@ -25,7 +25,11 @@
                 else if($_GET['type']=="4" && isset($_GET['OID'])&& isset ($_GET['KID']))
                 {
                     include './inc/showrechnung.inc.php';
-                }
+                }else if($_GET['type']=="5" && isset($_GET['OID'])&& isset ($_GET['KID']))
+                    {   //rechnung per email senden
+                    
+                        include './inc/editAuftrag.inc.php';
+                    }
       }  
  else {
      include './inc/listAuftrag.inc.php';

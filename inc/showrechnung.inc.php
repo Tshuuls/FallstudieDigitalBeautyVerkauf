@@ -11,6 +11,7 @@ $auftrag = new Auftrag();
 $auftrag= $db->selectOneAuftrag($anr);
 $auftragsPositionsListe= $db->getOrderPosition($anr);
 ?>
+<form action="mailto:<?php echo $user->getEmail() ?>" method="post" enctype="text/plain">
 <div class='col-md-10 col-md-offset-1'>
 <div class="row">
     <div class="col-xs-12">
@@ -20,7 +21,7 @@ $auftragsPositionsListe= $db->getOrderPosition($anr);
                 <div class="row">
                     <div class="col-xs-12"><h3>Rechnung</h3></div></div>
                 <div class="row"> <div class="col-xs-12"> <h4>Auftrag <?php echo $auftrag->getBezeichnung() ?> </h4></div></div>
-
+                <input type="text" style="display: none" name="Auftrag" value="<?php echo $auftrag->getBezeichnung() ?>">
 
             </div>
             <div class="col-xs-6 text-right">
@@ -31,6 +32,8 @@ $auftragsPositionsListe= $db->getOrderPosition($anr);
                     Österreich<br>
 
                 </address>
+                <input type="text" style="display: none" name="Adresse" value="Digital Beauty;Beautystrasse 1/10;1010 Wien;Österreich">
+
             </div>
         </div>
         <div class="row">
@@ -42,6 +45,8 @@ $auftragsPositionsListe= $db->getOrderPosition($anr);
                     <?php echo $user->getPLZ() ?><br>
                     <?php echo $user->getLand() ?>
                 </address>
+                <input type="text" style="display: none" name="Rechnungsadresse" value="
+                    <?php echo $user->getVorname() . " " . $user->getNachname() ?>;<?php echo $user->getStrasse() ?>;<?php echo $user->getPLZ() ?>;<?php echo $user->getLand() ?>">
             </div>
             <div class="col-xs-6 text-right">
                 <address>
@@ -50,6 +55,7 @@ $auftragsPositionsListe= $db->getOrderPosition($anr);
                     <?php echo $user->getStrasse() ?><br>
                     <?php echo $user->getPLZ() ?><br>
                     <?php echo $user->getLand() ?>
+                <input type="text" style="display: none" name="Lieferadresse" value="<?php echo $user->getVorname() . " " . $user->getNachname() ?>;<?php echo $user->getStrasse() ?>;<?php echo $user->getPLZ() ?>;<?php echo $user->getLand() ?>">
                 </address>
             </div>
         </div>
@@ -61,10 +67,16 @@ $auftragsPositionsListe= $db->getOrderPosition($anr);
                 <address>
                     <strong>Bestelldatum:</strong><br>
                     <?php
-                    if ($auftrag->getErstelldatum() && $auftrag->getErstelldatum() != "")
+                    if ($auftrag->getErstelldatum() && $auftrag->getErstelldatum() != ""){
                         echo date('d.m.Y', strtotime($auftrag->getErstelldatum()));
-                    else {
+                        echo' <input type="text" style="display: none" name="Bestelldatum" value="';
+                        echo date('d.m.Y', strtotime($auftrag->getErstelldatum()));
+                        echo'">';
+                    }else {
                         echo date('d.m.Y');
+                        echo' <input type="text" style="display: none" name="Bestelldatum" value="';
+                        echo date('d.m.Y');
+                        echo'">';
                     }
                     ?><br><br>
                 </address>
@@ -94,6 +106,8 @@ $auftragsPositionsListe= $db->getOrderPosition($anr);
                             <tr>       
                         </thead>
                         <tbody>
+                            
+                <input type="text" style="display: none" name="=====" value="=======">
                             <?php
                             $totalSum = 0;
 
@@ -103,13 +117,20 @@ $auftragsPositionsListe= $db->getOrderPosition($anr);
                                 <tr> 
 
                                     <td> <?php echo $auftragsPositionsListe[$x]->getAuftragsposition() ?> </td>
+                <input type="text" style="display: none" name="Position" value="<?php echo $auftragsPositionsListe[$x]->getAuftragsposition() ?>">
                                     <td> <?php echo $auftragsPositionsListe[$x]->getArtikelNr() ?> </td>
+                <input type="text" style="display: none" name="Artikel Nr." value="<?php echo $auftragsPositionsListe[$x]->getArtikelNr() ?>">
                                     <td> <?php echo $auftragsPositionsListe[$x]->getArtikelname() ?> </td>
+                <input type="text" style="display: none" name="Artikel Name" value="<?php echo $auftragsPositionsListe[$x]->getArtikelname() ?>">
 
                                     <td> <?php echo $auftragsPositionsListe[$x]->getMenge() ?> </td>
-                                    <td> <?php echo number_format($auftragsPositionsListe[$x]->getKosten(), 2, ',', ' ') ?> €</td>                        
+                <input type="text" style="display: none" name="Menge" value="<?php echo $auftragsPositionsListe[$x]->getMenge() ?>">
+                                    <td> <?php echo number_format($auftragsPositionsListe[$x]->getKosten(), 2, ',', ' ') ?> €</td>  
+                <input type="text" style="display: none" name="Kosten" value="<?php echo number_format($auftragsPositionsListe[$x]->getKosten(), 2, ',', ' ')?>">                      
                                     <td class="text-right"> <?php echo number_format(($auftragsPositionsListe[$x]->getMenge() * $auftragsPositionsListe[$x]->getKosten()), 2, ',', ' '); ?> €</td>
+                <input type="text" style="display: none" name="Total" value="<?php echo number_format(($auftragsPositionsListe[$x]->getMenge() * $auftragsPositionsListe[$x]->getKosten()), 2, ',', ' ');  ?>">
                                     <?php $totalSum += ($auftragsPositionsListe[$x]->getMenge() * $auftragsPositionsListe[$x]->getKosten()); ?>
+                <input type="text" style="display: none" name="=====" value="=======">
 
 
                                 </tr>
@@ -123,6 +144,7 @@ $auftragsPositionsListe= $db->getOrderPosition($anr);
 
                                 <td ><strong>Summe:</strong></td>
                                 <td class="text-right"> <?php echo number_format($totalSum, 2, ",", ' ') ?> €</td>
+                <input type="text" style="display: none" name="Summe" value="<?php echo number_format($totalSum, 2, ",", ' ')?>">
                             </tr>
                         </tbody>
                     </table>
@@ -132,3 +154,5 @@ $auftragsPositionsListe= $db->getOrderPosition($anr);
     </div>
 </div>
 </div>
+   <input type="submit" value="Rechnung senden">
+    </form>

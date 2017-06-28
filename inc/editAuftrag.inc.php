@@ -8,6 +8,8 @@ $auftrag = new Auftrag();
 $auftrag= $db->selectOneAuftrag($_GET['OID']);
 $auftragsPositionsListe= $db->getOrderPosition($_GET['OID']);
 
+
+
 if($_GET['type']==1){
 
     echo "<h3>".$user->getVorname()." ".$user->getNachname()."</h3>";
@@ -42,4 +44,6 @@ if($_GET['type']==1){
     if($auftrag->getKommission()==0) {echo '<a class="btn btn-primary" href="index.php?site=auftrag&type=2&OID='.$_GET['OID'].'">Auftrag bestätigen</a>';}
     if($auftrag->getKommission()==2 && $auftrag->getAuftrag() == 0) echo '<a class="btn btn-primary Abstand" href="index.php?site=auftrag&type=3&OID='.$_GET['OID'].'&KID='.$_GET['KID'].'">Rechnung erstellen</a>';
     echo '<a class="btn btn-primary Abstand" href="index.php?site=auftrag&type=4&OID='.$_GET['OID'].'&KID='.$_GET['KID'].'">Rechnung anzeigen</a>';
+    
+    
     }
