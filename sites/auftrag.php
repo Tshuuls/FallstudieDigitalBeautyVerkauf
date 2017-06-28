@@ -15,6 +15,17 @@
                Echo "<div class='alert alert-success' role='alert'>Auftrag wurde zur Kommissionierung freigegeben.</div>"; 
                include './inc/listAuftrag.inc.php';
             }
+            else if($_GET['type']=="3" && isset($_GET['OID'])&& isset ($_GET['KID']))
+            {
+                
+                $db = new Database();
+                $db->makeRechnung($_GET['OID']);
+                include './inc/showrechnung.inc.php';
+            }
+                else if($_GET['type']=="4" && isset($_GET['OID'])&& isset ($_GET['KID']))
+                {
+                    include './inc/showrechnung.inc.php';
+                }
       }  
  else {
      include './inc/listAuftrag.inc.php';

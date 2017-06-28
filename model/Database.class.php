@@ -391,5 +391,13 @@ class Database {
         $db->query($sql);
         $db->close();
     }
+    
+     function  makeRechnung($AuftragID){
+         $db= $this->connect2DB();
+        $sql = "UPDATE auftrag SET Auftrag = '1' WHERE AuftragsNr= '".$AuftragID."'";
+        $db->query($sql);
+        $db->close();
+     }
+    
 }
 
