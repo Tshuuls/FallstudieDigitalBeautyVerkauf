@@ -8,9 +8,12 @@
             include './inc/editAuftrag.inc.php';
             }
         
-        else if($_GET['type']=="2" && isset($_GET['OID'])&& isset ($_GET['KID']))
+        else if($_GET['type']=="2" && isset($_GET['OID']))
             {
-                echo "Test";
+               $db = new Database();
+               $db->ackAuftrag($_GET['OID']);
+               Echo "<div class='alert alert-success' role='alert'>Auftrag wurde zur Kommissionierung freigegeben.</div>"; 
+               include './inc/listAuftrag.inc.php';
             }
       }  
  else {

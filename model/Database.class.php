@@ -259,7 +259,7 @@ class Database {
     function selectAllAngebote(){
         $angebotlist = array();
         $db= $this->connect2DB();
-        $Abfrage = "select * from angebot ";
+        $Abfrage = "select * from angebot order by Erstelldatum DESC";
         if($result = $db->query($Abfrage)){
             while ($row = $result->fetch_object()) {
                 $prod = new Angebot();
@@ -383,6 +383,13 @@ class Database {
             }
             $db->close();
             return $rabat;
+    }
+    
+    function ackAuftrag($AuftragID){
+        $db= $this->connect2DB();
+        $sql = "UPDATE auftrag SET Kommission = '1' WHERE AuftragsNr= '".$AuftragID."'";
+        $db->query($sql);
+        $db->close();
     }
 }
 

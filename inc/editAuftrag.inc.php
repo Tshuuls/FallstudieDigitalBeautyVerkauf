@@ -39,6 +39,6 @@ if($_GET['type']==1){
         </tr>";
 
     echo"</table>";
-    echo '<a class="btn btn-primary" href="index.php?site=auftrag&type=2&OID='.$_GET['OID'].'">Auftrag bestätigen</a>';
-    echo '<a class="btn btn-primary" href="index.php?site=auftrag&type=3&OID='.$_GET['OID'].'">Rechnung erstellen</a>';
+    if($auftrag->getKommission()==0) {echo '<a class="btn btn-primary" href="index.php?site=auftrag&type=2&OID='.$_GET['OID'].'">Auftrag bestätigen</a>';}
+    echo '<a class="btn btn-primary Abstand" href="index.php?site=auftrag&type=3&OID='.$_GET['OID'].'">Rechnung erstellen</a>';
 }
