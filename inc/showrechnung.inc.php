@@ -45,8 +45,7 @@ $auftragsPositionsListe= $db->getOrderPosition($anr);
                     <?php echo $user->getPLZ() ?><br>
                     <?php echo $user->getLand() ?>
                 </address>
-                <input type="text" style="display: none" name="Rechnungsadresse" value="
-                    <?php echo $user->getVorname() . " " . $user->getNachname() ?>;<?php echo $user->getStrasse() ?>;<?php echo $user->getPLZ() ?>;<?php echo $user->getLand() ?>">
+                <input type="text" style="display: none" name="Rechnungsadresse" value="<?php echo $user->getVorname() . " " . $user->getNachname() ?>;<?php echo $user->getStrasse() ?>;<?php echo $user->getPLZ() ?>;<?php echo $user->getLand() ?>">
             </div>
             <div class="col-xs-6 text-right">
                 <address>
@@ -148,9 +147,10 @@ $auftragsPositionsListe= $db->getOrderPosition($anr);
                             </tr>
                         </tbody>
                     </table>
-                </div>
-            </div>
+                </div> 
+            </div>  
         </div>
+         <?php echo "Zahlungsbedingungen: ".$user->getZahlungsbedingungen() ?><br>
     </div>
 </div>
 </div>
