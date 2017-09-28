@@ -21,7 +21,7 @@ class Database {
     
     private function connect2DB(){
         $this->conn = new mysqli($this->host,$this->username,$this->password,$this->dbname);
-        //$db->set_charset("utf8");
+        mysqli_set_charset($this->conn, 'utf8');
         return $this->conn;
     }
     
